@@ -15,7 +15,8 @@
     "react-dom": "^19.1.0",
     "react-helmet-async": "^2.0.5",
     "react-router-dom": "^7.7.1",
-    "sass": "^1.89.2"
+    "sass": "^1.89.2",
+    "typeface-work-sans": "^1.1.13"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",
