@@ -1,43 +1,37 @@
 import { Bell, ChevronDown } from "lucide-react";
 import lendsqrLogo from "../assets/Group.svg";
-// import profileImg from "../assets/profile.png"; // Replace with your actual image
+import "./TopNav.scss";
 
 const TopNav = () => {
   return (
-    <header className="w-full flex items-center justify-between bg-white px-6 py-4 shadow-sm">
-      {/* Logo and Search */}
-      <div className="flex items-center gap-8">
-        <img src={lendsqrLogo} alt="Lendsqr logo" className="h-6" />
+    <header className="topnav">
+      <div className="topnav__left">
+        <img src={lendsqrLogo} alt="Lendsqr logo" className="topnav__logo" />
 
-        <div className="relative w-[300px]">
+        <div className="topnav__search">
           <input
             type="text"
             placeholder="Search for anything"
-            className="w-full py-2 pl-4 pr-10 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
+            className="topnav__input"
           />
-          <button className="absolute right-2 top-1/2 -translate-y-1/2 text-blue-600">
-            🔍
-          </button>
+          <button className="topnav__search-icon">🔍</button>
         </div>
       </div>
 
-      {/* Right section: Docs, bell, profile */}
-      <div className="flex items-center gap-6">
-        <a href="#" className="text-sm text-blue-900 hover:underline">
+      <div className="topnav__right">
+        <a href="#" className="topnav__docs">
           Docs
         </a>
+        <Bell className="topnav__icon" />
 
-        <Bell className="text-blue-900 cursor-pointer" />
-
-        <div className="flex items-center gap-2 cursor-pointer">
+        <div className="topnav__profile">
           <img
-            // src={profileImg}
             src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png?20200919003010"
             alt="User"
-            className="w-8 h-8 rounded-full object-cover"
+            className="topnav__avatar"
           />
-          <span className="text-sm text-blue-900 font-medium">Adedeji</span>
-          <ChevronDown className="w-4 h-4 text-blue-900" />
+          <span className="topnav__username">Adedeji</span>
+          <ChevronDown className="topnav__chevron" />
         </div>
       </div>
     </header>
@@ -45,3 +39,5 @@ const TopNav = () => {
 };
 
 export default TopNav;
+
+// import profileImg from "../assets/profile.png"; // Replace with your actual image

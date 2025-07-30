@@ -1,0 +1,51 @@
+.sidebar {
+  width: 250px;
+  background-color: #fff;
+  padding: 1rem;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+  min-height: 100vh;
+  font-family: "Work Sans", sans-serif;
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    color: #545f7d;
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &__section-title {
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    color: #999;
+    margin: 1.5rem 0 0.5rem;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0.8rem;
+    color: #545f7d;
+    font-size: 0.875rem;
+    border-radius: 4px;
+    margin-bottom: 0.4rem;
+    text-decoration: none;
+    transition: background 0.2s ease;
+
+    .icon {
+      width: 16px;
+      height: 16px;
+    }
+
+    &:hover {
+      background-color: #f0f4f7;
+    }
+
+    &.active {
+      background-color: #e8f6ff;
+      font-weight: 600;
+      color: #213f7d;
+    }
+  }
+}
