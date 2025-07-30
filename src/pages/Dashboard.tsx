@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import TopNav from "../components/TopNav";
 
 const Dashboard = () => {
   return (
@@ -6,7 +7,9 @@ const Dashboard = () => {
       <Helmet>
         <title>Lendsqr | Dashboard</title>
       </Helmet>
-      <div>Dashboard Page UI here</div>
+      <div className="min-h-screen bg-gray-100">
+        <TopNav />
+      </div>
     </>
   );
 };
