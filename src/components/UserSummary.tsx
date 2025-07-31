@@ -1,42 +1,71 @@
+import { useEffect, useState } from "react";
 import type { JSX } from "react";
 import styles from "./UserSummary.module.scss";
-import {
-  Users,
-  UserCheck, // For Active Users
-  Handshake, // For Users with Loans
-  PiggyBank, // For Users with Savings
-} from "lucide-react";
+import { Users, UserCheck, Handshake, PiggyBank } from "lucide-react";
+import { fetchUsers } from "../services/api";
+
+type UserStatus = "Active" | "Inactive" | "Pending" | "Blacklisted";
+
+// Define your User type
+interface User {
+  id: string;
+  name: string;
+  username: string;
+  email: string;
+  phone: string;
+  date: string;
+  dateJoined: string;
+  status: UserStatus;
+  organization: string;
+  hasLoan: boolean;
+  hasSavings: boolean;
+}
 
 interface SummaryCardProps {
   icon: JSX.Element;
   title: string;
-  value: string;
+  value: string | number;
 }
 
-const summaryData: SummaryCardProps[] = [
-  {
-    icon: <Users className={styles.icon} />,
-    title: "Users",
-    value: "2,453",
-  },
-  {
-    icon: <UserCheck className={styles.icon} />,
-    title: "Active Users",
-    value: "2,453",
-  },
-  {
-    icon: <Handshake className={styles.icon} />,
-    title: "Users with Loans",
-    value: "12,453",
-  },
-  {
-    icon: <PiggyBank className={styles.icon} />,
-    title: "Users with Savings",
-    value: "102,453",
-  },
-];
-
 const UserSummary = () => {
+  const [users, setUsers] = useState<User[]>([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      const data = await fetchUsers();
+      setUsers(data as User[]);
+    };
+    getData();
+  }, []);
+
+  const totalUsers = users.length;
+  const activeUsers = users.filter((u) => u.status === "Active").length;
+  const usersWithLoans = users.filter((u) => u.hasLoan).length;
+  const usersWithSavings = users.filter((u) => u.hasSavings).length;
+
+  const summaryData: SummaryCardProps[] = [
+    {
+      icon: <Users className={styles.icon} />,
+      title: "Users",
+      value: totalUsers,
+    },
+    {
+      icon: <UserCheck className={styles.icon} />,
+      title: "Active Users",
+      value: activeUsers,
+    },
+    {
+      icon: <Handshake className={styles.icon} />,
+      title: "Users with Loans",
+      value: usersWithLoans,
+    },
+    {
+      icon: <PiggyBank className={styles.icon} />,
+      title: "Users with Savings",
+      value: usersWithSavings,
+    },
+  ];
+
   return (
     <section className={styles.container}>
       <h2 className={styles.sectionTitle}>Users</h2>

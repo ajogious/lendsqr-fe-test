@@ -16,7 +16,6 @@ const Pagination = ({
   itemsPerPage,
   onPageChange,
 }: PaginationProps) => {
-  const MAX_VISIBLE_PAGES = 3;
   const startItem = (currentPage - 1) * itemsPerPage + 1;
   const endItem = Math.min(currentPage * itemsPerPage, totalItems);
 

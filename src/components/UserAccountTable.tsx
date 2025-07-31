@@ -4,6 +4,8 @@ import { MoreVertical } from "lucide-react";
 import { fetchUsers } from "../services/api";
 import DropdownMenu from "./DropdownMenu";
 
+type UserStatus = "Active" | "Inactive" | "Pending" | "Blacklisted";
+
 interface User {
   id: string;
   name: string;
@@ -11,7 +13,7 @@ interface User {
   email: string;
   phone: string;
   dateJoined: string;
-  status: "Active" | "Inactive" | "Pending" | "Blacklisted";
+  status: UserStatus;
   organization: string;
 }
 
@@ -37,7 +39,9 @@ const UserAccountTable = ({
       try {
         setLoading(true);
         const data = await fetchUsers();
-        setUsers(data);
+        console.log(data);
+
+        setUsers(data as User[]);
       } catch (err) {
         setError("Failed to load users. Please try again later.");
         console.error(err);

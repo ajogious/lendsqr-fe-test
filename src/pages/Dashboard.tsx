@@ -49,7 +49,6 @@ const Dashboard = () => {
             onMenuToggle={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
           />
           <div className={styles.contentWrapper}>
-            <h2 className={styles.pageTitle}>Users</h2>
             <UserSummary />
             <UserAccountTable
               searchQuery={search}

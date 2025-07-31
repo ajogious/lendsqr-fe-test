@@ -5,7 +5,8 @@
 }
 
 .sidebar {
-  width: 250px;
+  max-width: 283px;
+  width: 100%;
   background-color: #fff;
   border-right: 1px solid #eee;
   transition: transform 0.3s ease;
@@ -32,7 +33,7 @@
   overflow-x: hidden;
 
   .contentWrapper {
-    padding: 1.5rem 2rem;
+    padding: 1.5rem 3rem;
   }
 
   .pageTitle {
