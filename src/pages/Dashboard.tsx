@@ -5,29 +5,65 @@ import Pagination from "../components/Pagination";
 import BorrowerNav from "../components/BorrowerNav";
 import UserSummary from "../components/UserSummary";
 import styles from "./Dashboard.module.scss";
+import { useEffect, useState } from "react";
 
 const Dashboard = () => {
+  const [search, setSearch] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [filteredLength, setFilteredLength] = useState(0);
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+
+  const USERS_PER_PAGE = 10;
+
+  // Reset to page 1 when search input changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search]);
+
   return (
     <>
       <Helmet>
         <title>Lendsqr | Dashboard</title>
       </Helmet>
       <div className={styles.dashboardLayout}>
-        {/* Sidebar */}
-        <aside className={styles.sidebar}>
-          <BorrowerNav />
+        <aside
+          className={`${styles.sidebar} ${
+            isMobileSidebarOpen ? styles.sidebarOpen : ""
+          }`}
+          onClick={() => setIsMobileSidebarOpen(false)}
+        >
+          <div className={styles.sidebarContent}>
+            <h1 className={styles.organizationTitle}>Swatch Organization</h1>
+            <BorrowerNav />
+          </div>
         </aside>
 
-        {/* Main content */}
+        <div
+          className={styles.sidebarOverlay}
+          onClick={() => setIsMobileSidebarOpen(false)}
+        />
+
         <main className={styles.mainContent}>
-          <TopNav />
-          <UserSummary />
-          <UserAccountTable />
-          <Pagination
-            currentPage={1}
-            totalPages={5}
-            onPageChange={(page) => console.log("Go to page:", page)}
+          <TopNav
+            onSearch={setSearch}
+            onMenuToggle={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
           />
+          <div className={styles.contentWrapper}>
+            <h2 className={styles.pageTitle}>Users</h2>
+            <UserSummary />
+            <UserAccountTable
+              searchQuery={search}
+              currentPage={currentPage}
+              onFilteredLengthChange={setFilteredLength}
+            />
+            <Pagination
+              currentPage={currentPage}
+              totalPages={Math.ceil(filteredLength / USERS_PER_PAGE)}
+              onPageChange={setCurrentPage}
+              totalItems={0}
+              itemsPerPage={0}
+            />
+          </div>
         </main>
       </div>
     </>

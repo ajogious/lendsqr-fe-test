@@ -2,70 +2,118 @@ import { NavLink } from "react-router-dom";
 import {
   Users,
   Briefcase,
-  LayoutDashboard,
-  Settings,
+  ChartBar,
+  Coins, // Replacement for Sack
+  Handshake,
+  PiggyBank,
+  UserCheck,
+  UserX, // Replacement for UserTimes
+  Scroll,
+  Rocket, // Replacement for Galaxy
+  UserCog,
+  Sliders,
+  BadgePercent,
+  ClipboardList,
+  Settings, // Replacement for Tire
   ChevronDown,
+  LayoutDashboard,
 } from "lucide-react";
-import "./BorrowerNav.scss";
+import styles from "./BorrowerNav.module.scss";
 
 const BorrowerNav = () => {
   return (
-    <aside className="sidebar">
-      <div className="sidebar__top">
+    <nav className={styles.sidebarNav}>
+      <div className={styles.organization}>
+        <Briefcase className={styles.orgIcon} />
         <span>Switch Organization</span>
-        <ChevronDown className="icon" />
+        <ChevronDown className={styles.chevron} />
       </div>
 
-      <NavLink to="/dashboard" className="sidebar__item">
-        <LayoutDashboard className="icon" />
-        Dashboard
+      <NavLink
+        to="/dashboard"
+        className={({ isActive }) =>
+          `${styles.navItem} ${isActive ? styles.active : ""}`
+        }
+      >
+        <LayoutDashboard className={styles.icon} />
+        <span>Dashboard</span>
       </NavLink>
 
-      <p className="sidebar__section-title">Customers</p>
+      <p className={styles.sectionTitle}>CUSTOMERS</p>
       <SidebarItem
-        icon={<Users className="icon" />}
+        icon={<Users className={styles.icon} />}
         text="Users"
         to="/dashboard/users"
       />
-      <SidebarItem icon={<Briefcase className="icon" />} text="Guarantors" />
-      <SidebarItem icon={<Briefcase className="icon" />} text="Loans" />
       <SidebarItem
-        icon={<Briefcase className="icon" />}
+        icon={<UserCheck className={styles.icon} />}
+        text="Guarantors"
+      />
+      <SidebarItem icon={<Coins className={styles.icon} />} text="Loans" />
+      <SidebarItem
+        icon={<Handshake className={styles.icon} />}
         text="Decision Models"
       />
-      <SidebarItem icon={<Briefcase className="icon" />} text="Savings" />
-      <SidebarItem icon={<Briefcase className="icon" />} text="Loan Requests" />
-      <SidebarItem icon={<Briefcase className="icon" />} text="Whitelist" />
-      <SidebarItem icon={<Briefcase className="icon" />} text="Karma" />
-
-      <p className="sidebar__section-title">Businesses</p>
-      <SidebarItem icon={<Briefcase className="icon" />} text="Organization" />
-      <SidebarItem icon={<Briefcase className="icon" />} text="Loan Products" />
       <SidebarItem
-        icon={<Briefcase className="icon" />}
+        icon={<PiggyBank className={styles.icon} />}
+        text="Savings"
+      />
+      <SidebarItem
+        icon={<Rocket className={styles.icon} />}
+        text="Loan Requests"
+      />
+      <SidebarItem icon={<UserX className={styles.icon} />} text="Whitelist" />
+      <SidebarItem icon={<UserCog className={styles.icon} />} text="Karma" />
+
+      <p className={styles.sectionTitle}>BUSINESSES</p>
+      <SidebarItem
+        icon={<Briefcase className={styles.icon} />}
+        text="Organization"
+      />
+      <SidebarItem
+        icon={<Handshake className={styles.icon} />}
+        text="Loan Products"
+      />
+      <SidebarItem
+        icon={<Coins className={styles.icon} />}
         text="Savings Products"
       />
       <SidebarItem
-        icon={<Briefcase className="icon" />}
+        icon={<BadgePercent className={styles.icon} />}
         text="Fees and Charges"
       />
-      <SidebarItem icon={<Briefcase className="icon" />} text="Transactions" />
-      <SidebarItem icon={<Briefcase className="icon" />} text="Services" />
       <SidebarItem
-        icon={<Briefcase className="icon" />}
+        icon={<Scroll className={styles.icon} />}
+        text="Transactions"
+      />
+      <SidebarItem
+        icon={<Settings className={styles.icon} />}
+        text="Services"
+      />
+      <SidebarItem
+        icon={<UserCog className={styles.icon} />}
         text="Service Account"
       />
-      <SidebarItem icon={<Briefcase className="icon" />} text="Settlements" />
-      <SidebarItem icon={<Briefcase className="icon" />} text="Reports" />
-
-      <p className="sidebar__section-title">Settings</p>
-      <SidebarItem icon={<Settings className="icon" />} text="Preferences" />
       <SidebarItem
-        icon={<Settings className="icon" />}
+        icon={<ClipboardList className={styles.icon} />}
+        text="Settlements"
+      />
+      <SidebarItem icon={<ChartBar className={styles.icon} />} text="Reports" />
+
+      <p className={styles.sectionTitle}>SETTINGS</p>
+      <SidebarItem
+        icon={<Sliders className={styles.icon} />}
+        text="Preferences"
+      />
+      <SidebarItem
+        icon={<BadgePercent className={styles.icon} />}
         text="Fees and Pricing"
       />
-      <SidebarItem icon={<Settings className="icon" />} text="Audit Logs" />
-    </aside>
+      <SidebarItem
+        icon={<ClipboardList className={styles.icon} />}
+        text="Audit Logs"
+      />
+    </nav>
   );
 };
 
@@ -81,10 +129,12 @@ const SidebarItem = ({
   return (
     <NavLink
       to={to}
-      className={({ isActive }) => `sidebar__item ${isActive ? "active" : ""}`}
+      className={({ isActive }) =>
+        `${styles.navItem} ${isActive ? styles.active : ""}`
+      }
     >
       {icon}
-      {text}
+      <span>{text}</span>
     </NavLink>
   );
 };

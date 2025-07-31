@@ -1,0 +1,103 @@
+.sidebarNav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.5rem 0;
+
+  .organization {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.8rem 1.5rem;
+    color: #213f7d;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+
+    .orgIcon {
+      width: 16px;
+      height: 16px;
+    }
+
+    .chevron {
+      width: 14px;
+      height: 14px;
+      margin-left: auto;
+    }
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .sectionTitle {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #545f7d;
+    margin: 1.5rem 1.5rem 0.5rem;
+    letter-spacing: 0.5px;
+  }
+
+  .navItem {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 1.5rem;
+    color: #545f7d;
+    font-size: 0.95rem;
+    border-radius: 0 30px 30px 0;
+    margin: 0.2rem 0;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    position: relative;
+    width: calc(100% - 3rem);
+    margin-left: 1.5rem;
+
+    .icon {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    &:hover {
+      background-color: rgba(57, 205, 204, 0.06);
+      color: #213f7d;
+    }
+
+    &.active {
+      background-color: rgba(57, 205, 204, 0.06);
+      color: #213f7d;
+      font-weight: 500;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 3px;
+        background-color: #39cdcc;
+        border-radius: 0 3px 3px 0;
+      }
+    }
+  }
+}
+
+// Mobile responsiveness
+@media (max-width: 768px) {
+  .sidebarNav {
+    padding: 1rem 0;
+
+    .organization {
+      padding: 0.8rem 1rem;
+    }
+
+    .navItem {
+      padding: 0.8rem 1rem;
+      width: calc(100% - 2rem);
+      margin-left: 1rem;
+    }
+  }
+}

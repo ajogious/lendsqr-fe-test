@@ -1,37 +1,63 @@
-import { Bell, ChevronDown } from "lucide-react";
+import { Bell, ChevronDown, Search } from "lucide-react";
 import lendsqrLogo from "../assets/Group.svg";
-import "./TopNav.scss";
+import styles from "./TopNav.module.scss";
+import { type ChangeEvent } from "react";
 
-const TopNav = () => {
+interface TopNavProps {
+  onSearch: (value: string) => void;
+  onMenuToggle?: () => void;
+}
+
+const TopNav = ({ onSearch, onMenuToggle }: TopNavProps) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    onSearch(e.target.value);
+  };
+
   return (
-    <header className="topnav">
-      <div className="topnav__left">
-        <img src={lendsqrLogo} alt="Lendsqr logo" className="topnav__logo" />
+    <header className={styles.topnav}>
+      <div className={styles.leftSection}>
+        {onMenuToggle && (
+          <button
+            className={styles.menuButton}
+            onClick={onMenuToggle}
+            aria-label="Toggle menu"
+          >
+            ☰
+          </button>
+        )}
+        <img src={lendsqrLogo} alt="Lendsqr logo" className={styles.logo} />
 
-        <div className="topnav__search">
+        <div className={styles.searchContainer}>
           <input
             type="text"
             placeholder="Search for anything"
-            className="topnav__input"
+            className={styles.searchInput}
+            onChange={handleChange}
           />
-          <button className="topnav__search-icon">🔍</button>
+          <button className={styles.searchButton}>
+            <Search className={styles.searchIcon} />
+          </button>
         </div>
       </div>
 
-      <div className="topnav__right">
-        <a href="#" className="topnav__docs">
+      <div className={styles.rightSection}>
+        <a href="#" className={styles.docsLink}>
           Docs
         </a>
-        <Bell className="topnav__icon" />
 
-        <div className="topnav__profile">
+        <div className={styles.notification}>
+          <Bell className={styles.notificationIcon} />
+          <span className={styles.notificationBadge}>3</span>
+        </div>
+
+        <div className={styles.profile}>
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png?20200919003010"
-            alt="User"
-            className="topnav__avatar"
+            alt="User profile"
+            className={styles.avatar}
           />
-          <span className="topnav__username">Adedeji</span>
-          <ChevronDown className="topnav__chevron" />
+          <span className={styles.username}>Adedeji</span>
+          <ChevronDown className={styles.chevron} />
         </div>
       </div>
     </header>
@@ -39,5 +65,3 @@ const TopNav = () => {
 };
 
 export default TopNav;
-
-// import profileImg from "../assets/profile.png"; // Replace with your actual image

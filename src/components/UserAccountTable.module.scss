@@ -1,61 +1,108 @@
-.tableWrapper {
+.container {
+  background: #ffffff;
+  border: 1px solid rgba(33, 63, 125, 0.06);
+  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
+  padding: 1.875rem;
+  margin-top: 1.5rem;
+}
+
+.tableContainer {
   overflow-x: auto;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
-  padding: 1rem;
+  width: 100%;
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.875rem;
+  min-width: 800px;
+}
 
-  th {
-    text-align: left;
-    padding: 0.75rem;
-    color: #545f7d;
-    font-weight: 600;
-    background-color: #f9fafb;
-  }
+.headerCell {
+  text-align: left;
+  padding: 0.75rem 1.5rem;
+  color: #545f7d;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  background-color: #ffffff;
+  border-bottom: 1px solid rgba(33, 63, 125, 0.1);
+}
 
-  td {
-    padding: 0.75rem;
-    border-top: 1px solid #f0f0f0;
-    color: #545f7d;
+.row {
+  &:hover {
+    background-color: rgba(57, 205, 204, 0.03);
   }
 }
 
+.cell {
+  padding: 1.25rem 1.5rem;
+  color: #545f7d;
+  font-size: 0.875rem;
+  border-bottom: 1px solid rgba(33, 63, 125, 0.1);
+}
+
 .status {
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
+  padding: 0.5rem 0.875rem;
+  border-radius: 100px;
   font-size: 0.75rem;
   font-weight: 500;
   display: inline-block;
   text-align: center;
-}
+  text-transform: capitalize;
 
-.active {
-  background-color: #e1fcef;
-  color: #39cd62;
-}
+  &.active {
+    background-color: rgba(57, 205, 98, 0.06);
+    color: #39cd62;
+  }
 
-.pending {
-  background-color: #fcefe1;
-  color: #e9b200;
-}
+  &.pending {
+    background-color: rgba(233, 178, 0, 0.06);
+    color: #e9b200;
+  }
 
-.inactive {
-  background-color: #f0f0f0;
-  color: #888;
-}
+  &.inactive {
+    background-color: rgba(84, 95, 125, 0.06);
+    color: #545f7d;
+  }
 
-.blacklisted {
-  background-color: #fddede;
-  color: #e4033b;
+  &.blacklisted {
+    background-color: rgba(228, 3, 59, 0.06);
+    color: #e4033b;
+  }
 }
 
 .moreIcon {
   cursor: pointer;
   color: #545f7d;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.loading,
+.error,
+.noResults {
+  padding: 2rem;
+  text-align: center;
+  color: #545f7d;
+  font-size: 1rem;
+}
+
+.error {
+  color: #e4033b;
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .headerCell,
+  .cell {
+    padding: 0.75rem 1rem;
+  }
 }
