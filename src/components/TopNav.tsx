@@ -1,7 +1,7 @@
+import { useState, type ChangeEvent } from "react";
 import { Bell, ChevronDown, Search } from "lucide-react";
 import lendsqrLogo from "../assets/Group.svg";
 import styles from "./TopNav.module.scss";
-import { type ChangeEvent } from "react";
 
 interface TopNavProps {
   onSearch: (value: string) => void;
@@ -9,6 +9,8 @@ interface TopNavProps {
 }
 
 const TopNav = ({ onSearch, onMenuToggle }: TopNavProps) => {
+  const [isSearchVisible, setIsSearchVisible] = useState(false);
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     onSearch(e.target.value);
   };
@@ -25,9 +27,11 @@ const TopNav = ({ onSearch, onMenuToggle }: TopNavProps) => {
             ☰
           </button>
         )}
+
         <img src={lendsqrLogo} alt="Lendsqr logo" className={styles.logo} />
 
-        <div className={styles.searchContainer}>
+        {/* Full Search on Large Screens */}
+        <div className={`${styles.searchContainer} ${styles.desktopOnly}`}>
           <input
             type="text"
             placeholder="Search for anything"
@@ -57,6 +61,25 @@ const TopNav = ({ onSearch, onMenuToggle }: TopNavProps) => {
           />
           <span className={styles.username}>Adedeji</span>
           <ChevronDown className={styles.chevron} />
+        </div>
+
+        {/* Toggle Search on Mobile */}
+        <div className={styles.mobileSearchToggle}>
+          {isSearchVisible ? (
+            <input
+              type="text"
+              className={styles.mobileSearchInput}
+              placeholder="Search"
+              onChange={handleChange}
+              onBlur={() => setIsSearchVisible(false)}
+              autoFocus
+            />
+          ) : (
+            <Search
+              className={styles.searchIcon}
+              onClick={() => setIsSearchVisible(true)}
+            />
+          )}
         </div>
       </div>
     </header>

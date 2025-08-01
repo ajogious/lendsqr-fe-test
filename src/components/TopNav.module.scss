@@ -72,6 +72,7 @@
     color: white;
     width: 16px;
     height: 16px;
+    cursor: pointer;
   }
 
   .rightSection {
@@ -87,7 +88,7 @@
     text-decoration: none;
     text-transform: capitalize;
     text-decoration: underline;
-    transition: 0.5 all ease;
+    transition: 0.3s ease;
 
     &:hover {
       transform: scale(1.1);
@@ -147,9 +148,34 @@
       height: 16px;
     }
   }
+
+  .mobileSearchToggle {
+    display: none;
+    align-items: center;
+    gap: 8px;
+
+    .mobileSearchInput {
+      padding: 6px 10px;
+      font-size: 0.9rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      outline: none;
+      width: 160px;
+    }
+
+    .searchIcon {
+      color: #213f7d;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .desktopOnly {
+    display: flex;
+  }
 }
 
-// Mobile responsiveness
+// Medium screens
 @media (max-width: 1024px) {
   .topnav {
     padding: 1rem;
@@ -157,25 +183,69 @@
     .searchContainer {
       width: 300px;
     }
+
+    .rightSection {
+      gap: 1.2rem;
+    }
   }
 }
 
+// Mobile screens
 @media (max-width: 768px) {
   .topnav {
-    .menuButton {
-      display: block;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+
+    .leftSection {
+      width: 100%;
+      justify-content: space-between;
     }
 
     .searchContainer {
       display: none;
     }
 
-    .rightSection {
-      gap: 1rem;
+    .searchInput {
+      flex: 1;
+    }
+
+    .menuButton {
+      display: block;
     }
 
     .docsLink {
       display: none;
+    }
+
+    .rightSection {
+      width: 100%;
+      justify-content: flex-end;
+      gap: 1rem;
+    }
+
+    .mobileSearchToggle {
+      display: flex;
+    }
+
+    .desktopOnly {
+      display: none;
+    }
+  }
+}
+
+// Extra small screens
+@media (max-width: 480px) {
+  .profile {
+    .username,
+    .chevron {
+      display: none;
+    }
+  }
+
+  .mobileSearchToggle {
+    .mobileSearchInput {
+      width: 120px;
     }
   }
 }
