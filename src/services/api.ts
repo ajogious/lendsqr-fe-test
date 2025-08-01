@@ -1,5 +1,5 @@
 import axios from "axios";
-import generatedJSON from "../data/generated.json"; // Adjust path
+import generatedJSON from "../data/generated.json";
 
 const BASE_URL = "https://lendsqr-users.free.beeceptor.com/userss";
 
@@ -9,24 +9,6 @@ export const fetchUsers = async () => {
     return response.data;
   } catch (error) {
     console.error("Failed to fetch users:", error);
-    return generatedJSON;
+    return generatedJSON; // Back-up incase the end point couldn't be reach
   }
 };
-
-// export const fetchUsers = async () => {
-//   try {
-//     const response = await fetch(mockUsers);
-//     if (!response.ok) throw new Error("Failed to fetch from API");
-
-//     const data = await response.json();
-//     return data;
-//   } catch (error) {
-//     console.warn("Using mock data due to error:", error);
-//     return mockUsers; // 👈 fallback to local JSON
-//   }
-// };
-
-// export const fetchUsers = async () => {
-//   console.warn("🔁 Using local mock data for now");
-//   return mockUsers;
-// };

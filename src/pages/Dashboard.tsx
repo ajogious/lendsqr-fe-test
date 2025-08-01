@@ -14,12 +14,10 @@ const Dashboard = () => {
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const [itemsPerPage, setItemsPerPage] = useState(10);
 
-  // Reset to page 1 when filters change
   useEffect(() => {
     setCurrentPage(1);
   }, [search, itemsPerPage]);
 
-  // Close mobile sidebar when resizing to desktop
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
@@ -31,7 +29,6 @@ const Dashboard = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Prevent background scroll when sidebar is open
   useEffect(() => {
     document.body.style.overflow = isMobileSidebarOpen ? "hidden" : "auto";
   }, [isMobileSidebarOpen]);
@@ -67,7 +64,6 @@ const Dashboard = () => {
           )}
 
           <div className={styles.contentWrapper}>
-            {/* No global loading state needed here */}
             <UserSummary />
             <UserAccountTable
               searchQuery={search}

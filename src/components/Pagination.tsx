@@ -22,7 +22,7 @@ const Pagination = ({
   const itemsPerPageOptions = useMemo(() => {
     const defaultOptions = [10, 20, 50, 100, 200, 500];
     const filtered = defaultOptions.filter((opt) => opt < totalItems);
-    if (!filtered.includes(totalItems)) filtered.push(totalItems); // Add "All"
+    if (!filtered.includes(totalItems)) filtered.push(totalItems);
     return filtered;
   }, [totalItems]);
 
@@ -37,7 +37,7 @@ const Pagination = ({
   ) => {
     const newItemsPerPage = Number(e.target.value);
     onItemsPerPageChange(newItemsPerPage);
-    onPageChange(1); // Reset to first page
+    onPageChange(1);
   };
 
   const renderPageNumbers = () => {

@@ -27,7 +27,6 @@ const Login = () => {
       [name]: value,
     });
 
-    // Clear error when user types
     if (errors[name as keyof typeof errors]) {
       setErrors({
         ...errors,
@@ -41,7 +40,6 @@ const Login = () => {
     let valid = true;
     const newErrors = { email: "", password: "" };
 
-    // Email validation
     if (!formData.email) {
       newErrors.email = "Email is required";
       valid = false;
@@ -50,7 +48,6 @@ const Login = () => {
       valid = false;
     }
 
-    // Password validation
     if (!formData.password) {
       newErrors.password = "Password is required";
       valid = false;
@@ -62,9 +59,8 @@ const Login = () => {
     setErrors(newErrors);
 
     if (valid) {
-      // Proceed with login logic
       console.log("Form submitted:", formData);
-      // Add your authentication logic here
+      // authentication logic here
     }
   };
 
