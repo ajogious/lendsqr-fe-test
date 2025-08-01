@@ -47,7 +47,6 @@ const TopNav = ({ onSearch, onMenuToggle }: TopNavProps) => {
 
         <div className={styles.notification}>
           <Bell className={styles.notificationIcon} />
-          <span className={styles.notificationBadge}>3</span>
         </div>
 
         <div className={styles.profile}>

@@ -1,12 +1,10 @@
-import { useEffect, useState } from "react";
-import type { JSX } from "react";
+import { useEffect, useState, type JSX } from "react";
 import styles from "./UserSummary.module.scss";
 import { Users, UserCheck, Handshake, PiggyBank } from "lucide-react";
 import { fetchUsers } from "../services/api";
 
 type UserStatus = "Active" | "Inactive" | "Pending" | "Blacklisted";
 
-// Define your User type
 interface User {
   id: string;
   name: string;
@@ -29,16 +27,26 @@ interface SummaryCardProps {
 
 const UserSummary = () => {
   const [users, setUsers] = useState<User[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getData = async () => {
-      const data = await fetchUsers();
-      setUsers(data as User[]);
+      try {
+        setLoading(true);
+        const data = await fetchUsers();
+        setUsers(data as User[]);
+      } catch (error) {
+        console.error("Error fetching user summary:", error);
+      } finally {
+        setLoading(false);
+      }
     };
+
     getData();
   }, []);
 
   const totalUsers = users.length;
+
   const activeUsers = users.filter((u) => u.status === "Active").length;
   const usersWithLoans = users.filter((u) => u.hasLoan).length;
   const usersWithSavings = users.filter((u) => u.hasSavings).length;
@@ -65,6 +73,14 @@ const UserSummary = () => {
       value: usersWithSavings,
     },
   ];
+
+  if (loading) {
+    return (
+      <div className={styles.loaderContainer}>
+        <div className={styles.loader} />
+      </div>
+    );
+  }
 
   return (
     <section className={styles.container}>

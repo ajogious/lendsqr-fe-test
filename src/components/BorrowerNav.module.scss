@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  padding: 1.5rem 0;
+  padding: 0.5rem 0 5rem 0;
+  min-height: 100vh;
 
   .organization {
     display: flex;
@@ -10,14 +11,14 @@
     gap: 0.6rem;
     padding: 0.8rem 1.5rem;
     color: #213f7d;
-    font-size: 0.95rem;
-    font-weight: 500;
+    font-size: 0.8rem;
+    font-weight: 600;
     margin-bottom: 1.5rem;
     cursor: pointer;
 
     .orgIcon {
-      width: 16px;
-      height: 16px;
+      width: 14px;
+      height: 14px;
     }
 
     .chevron {
@@ -43,11 +44,10 @@
   .navItem {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 0.5rem;
     padding: 0.8rem 1.5rem;
     color: #545f7d;
-    font-size: 0.95rem;
-    border-radius: 0 30px 30px 0;
+    font-size: 0.8rem;
     margin: 0.2rem 0;
     text-decoration: none;
     transition: all 0.2s ease;
@@ -61,15 +61,10 @@
       flex-shrink: 0;
     }
 
-    &:hover {
-      background-color: rgba(57, 205, 204, 0.06);
-      color: #213f7d;
-    }
-
+    &:hover,
     &.active {
       background-color: rgba(57, 205, 204, 0.06);
       color: #213f7d;
-      font-weight: 500;
 
       &::before {
         content: "";
@@ -88,7 +83,7 @@
 // Mobile responsiveness
 @media (max-width: 768px) {
   .sidebarNav {
-    padding: 1rem 0;
+    padding: 1rem 0 6rem 0;
 
     .organization {
       padding: 0.8rem 1rem;

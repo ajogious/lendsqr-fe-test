@@ -1,23 +1,30 @@
+import { useMemo } from "react";
 import styles from "./Pagination.module.scss";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 type PaginationProps = {
   currentPage: number;
-  totalPages: number;
   totalItems: number;
   itemsPerPage: number;
   onPageChange: (page: number) => void;
+  onItemsPerPageChange: (itemsPerPage: number) => void;
 };
 
 const Pagination = ({
   currentPage,
-  totalPages,
   totalItems,
   itemsPerPage,
   onPageChange,
+  onItemsPerPageChange,
 }: PaginationProps) => {
-  const startItem = (currentPage - 1) * itemsPerPage + 1;
-  const endItem = Math.min(currentPage * itemsPerPage, totalItems);
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+  const itemsPerPageOptions = useMemo(() => {
+    const defaultOptions = [10, 20, 50, 100, 200, 500];
+    const filtered = defaultOptions.filter((opt) => opt < totalItems);
+    if (!filtered.includes(totalItems)) filtered.push(totalItems); // Add "All"
+    return filtered;
+  }, [totalItems]);
 
   const goToPage = (page: number) => {
     if (page >= 1 && page <= totalPages) {
@@ -25,23 +32,38 @@ const Pagination = ({
     }
   };
 
+  const handleItemsPerPageChange = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    const newItemsPerPage = Number(e.target.value);
+    onItemsPerPageChange(newItemsPerPage);
+    onPageChange(1); // Reset to first page
+  };
+
   const renderPageNumbers = () => {
     const pages = [];
-    let leftSide = currentPage - 1;
-    let rightSide = currentPage + 1;
+    const maxVisiblePages = 3;
 
-    if (currentPage > 1) {
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+    if (endPage - startPage + 1 < maxVisiblePages) {
+      startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+
+    if (startPage > 1) {
       pages.push(
         <button
           key={1}
-          className={styles.pageButton}
+          className={`${styles.pageButton} ${
+            1 === currentPage ? styles.active : ""
+          }`}
           onClick={() => goToPage(1)}
-          aria-label={`Go to page 1`}
         >
           1
         </button>
       );
-      if (currentPage > 2) {
+      if (startPage > 2) {
         pages.push(
           <span key="left-ellipsis" className={styles.ellipsis}>
             ...
@@ -50,26 +72,22 @@ const Pagination = ({
       }
     }
 
-    for (let i = leftSide; i <= rightSide; i++) {
-      if (i > 0 && i <= totalPages) {
-        pages.push(
-          <button
-            key={i}
-            className={`${styles.pageButton} ${
-              i === currentPage ? styles.active : ""
-            }`}
-            onClick={() => goToPage(i)}
-            aria-label={`Go to page ${i}`}
-            aria-current={i === currentPage ? "page" : undefined}
-          >
-            {i}
-          </button>
-        );
-      }
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(
+        <button
+          key={i}
+          className={`${styles.pageButton} ${
+            i === currentPage ? styles.active : ""
+          }`}
+          onClick={() => goToPage(i)}
+        >
+          {i}
+        </button>
+      );
     }
 
-    if (currentPage < totalPages - 1) {
-      if (currentPage < totalPages - 2) {
+    if (endPage < totalPages) {
+      if (endPage < totalPages - 1) {
         pages.push(
           <span key="right-ellipsis" className={styles.ellipsis}>
             ...
@@ -79,9 +97,10 @@ const Pagination = ({
       pages.push(
         <button
           key={totalPages}
-          className={styles.pageButton}
+          className={`${styles.pageButton} ${
+            totalPages === currentPage ? styles.active : ""
+          }`}
           onClick={() => goToPage(totalPages)}
-          aria-label={`Go to page ${totalPages}`}
         >
           {totalPages}
         </button>
@@ -93,12 +112,23 @@ const Pagination = ({
 
   return (
     <div className={styles.container}>
-      <div className={styles.resultCount}>
-        Showing <strong>{startItem}</strong> to <strong>{endItem}</strong> of{" "}
-        <strong>{totalItems}</strong> entries
+      <div className={styles.showingText}>
+        Showing
+        <select
+          className={styles.itemsPerPageSelect}
+          value={itemsPerPage}
+          onChange={handleItemsPerPageChange}
+        >
+          {itemsPerPageOptions.map((opt) => (
+            <option key={opt} value={opt}>
+              {opt === totalItems ? `All (${opt})` : opt}
+            </option>
+          ))}
+        </select>
+        out of <span className={styles.totalItems}>{totalItems}</span>
       </div>
 
-      <div className={styles.pagination}>
+      <div className={styles.paginationControls}>
         <button
           className={styles.navButton}
           onClick={() => goToPage(currentPage - 1)}
@@ -108,12 +138,12 @@ const Pagination = ({
           <ChevronLeft size={16} />
         </button>
 
-        {renderPageNumbers()}
+        <div className={styles.pageNumbers}>{renderPageNumbers()}</div>
 
         <button
           className={styles.navButton}
           onClick={() => goToPage(currentPage + 1)}
-          disabled={currentPage === totalPages}
+          disabled={currentPage >= totalPages}
           aria-label="Next page"
         >
           <ChevronRight size={16} />

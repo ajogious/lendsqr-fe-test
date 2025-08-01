@@ -1,17 +1,17 @@
-// import axios from "axios";
-import mockUsers from "../data/mockUsers.json"; // Adjust path
+import axios from "axios";
+import generatedJSON from "../data/generated.json"; // Adjust path
 
-// const BASE_URL = "https://lendsqr-users.free.beeceptor.com/users";
+const BASE_URL = "https://lendsqr-users.free.beeceptor.com/userss";
 
-// export const fetchUsers = async () => {
-//   try {
-//     const response = await axios.get(BASE_URL);
-//     return response.data;
-//   } catch (error) {
-//     console.error("Failed to fetch users:", error);
-//     return mockUsers;
-//   }
-// };
+export const fetchUsers = async () => {
+  try {
+    const response = await axios.get(BASE_URL);
+    return response.data;
+  } catch (error) {
+    console.error("Failed to fetch users:", error);
+    return generatedJSON;
+  }
+};
 
 // export const fetchUsers = async () => {
 //   try {
@@ -26,7 +26,7 @@ import mockUsers from "../data/mockUsers.json"; // Adjust path
 //   }
 // };
 
-export const fetchUsers = async () => {
-  console.warn("🔁 Using local mock data for now");
-  return mockUsers;
-};
+// export const fetchUsers = async () => {
+//   console.warn("🔁 Using local mock data for now");
+//   return mockUsers;
+// };

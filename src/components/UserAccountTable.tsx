@@ -20,14 +20,14 @@ interface User {
 interface UserAccountTableProps {
   searchQuery: string;
   currentPage: number;
+  itemsPerPage: number;
   onFilteredLengthChange?: (length: number) => void;
 }
-
-const USERS_PER_PAGE = 10;
 
 const UserAccountTable = ({
   searchQuery,
   currentPage,
+  itemsPerPage,
   onFilteredLengthChange,
 }: UserAccountTableProps) => {
   const [users, setUsers] = useState<User[]>([]);
@@ -39,18 +39,19 @@ const UserAccountTable = ({
       try {
         setLoading(true);
         const data = await fetchUsers();
-        console.log(data);
-
         setUsers(data as User[]);
+        if (onFilteredLengthChange) {
+          onFilteredLengthChange(data.length);
+        }
       } catch (err) {
-        setError("Failed to load users. Please try again later.");
         console.error(err);
+        setError("Failed to load users. Please try again.");
       } finally {
         setLoading(false);
       }
     };
     loadUsers();
-  }, []);
+  }, [onFilteredLengthChange]);
 
   const formatDate = (rawDate: string) => {
     const date = new Date(rawDate);
@@ -67,21 +68,28 @@ const UserAccountTable = ({
   };
 
   const formatPhoneNumber = (phone: string) => {
-    // Format Nigerian phone numbers
     return phone
       .replace(/^234/, "0")
       .replace(/(\d{3})(\d{3})(\d{4})/, "$1 $2 $3");
   };
 
+  const FilterIcon = () => (
+    <div className={styles.filterIcon}>
+      <div className={styles.filterLine} style={{ width: "14px" }}></div>
+      <div className={styles.filterLine} style={{ width: "10px" }}></div>
+      <div className={styles.filterLine} style={{ width: "4px" }}></div>
+    </div>
+  );
+
   const filteredUsers = users.filter((user) => {
-    const queryLower = searchQuery.toLowerCase();
+    const query = searchQuery.toLowerCase();
     return (
-      user.organization?.toLowerCase().includes(queryLower) ||
-      user.username?.toLowerCase().includes(queryLower) ||
-      user.email?.toLowerCase().includes(queryLower) ||
-      user.phone?.toLowerCase().includes(queryLower) ||
-      formatDate(user.dateJoined).toLowerCase().includes(queryLower) ||
-      user.status?.toLowerCase().includes(queryLower)
+      user.organization?.toLowerCase().includes(query) ||
+      user.username?.toLowerCase().includes(query) ||
+      user.email?.toLowerCase().includes(query) ||
+      user.phone?.toLowerCase().includes(query) ||
+      formatDate(user.dateJoined).toLowerCase().includes(query) ||
+      user.status?.toLowerCase().includes(query)
     );
   });
 
@@ -89,14 +97,18 @@ const UserAccountTable = ({
     onFilteredLengthChange?.(filteredUsers.length);
   }, [filteredUsers, onFilteredLengthChange]);
 
-  const startIndex = (currentPage - 1) * USERS_PER_PAGE;
+  const startIndex = (currentPage - 1) * itemsPerPage;
   const paginatedUsers = filteredUsers.slice(
     startIndex,
-    startIndex + USERS_PER_PAGE
+    startIndex + itemsPerPage
   );
 
   if (loading) {
-    return <div className={styles.loading}>Loading users...</div>;
+    return (
+      <div className={styles.loaderContainer}>
+        <div className={styles.loader}></div>
+      </div>
+    );
   }
 
   if (error) {
@@ -113,12 +125,21 @@ const UserAccountTable = ({
         <table className={styles.table}>
           <thead>
             <tr>
-              <th className={styles.headerCell}>Organization</th>
-              <th className={styles.headerCell}>Username</th>
-              <th className={styles.headerCell}>Email</th>
-              <th className={styles.headerCell}>Phone number</th>
-              <th className={styles.headerCell}>Date joined</th>
-              <th className={styles.headerCell}>Status</th>
+              {[
+                "Organization",
+                "Username",
+                "Email",
+                "Phone number",
+                "Date joined",
+                "Status",
+              ].map((header, index) => (
+                <th key={index} className={styles.headerCell}>
+                  <div className={styles.headerContent}>
+                    <span>{header}</span>
+                    <FilterIcon />
+                  </div>
+                </th>
+              ))}
               <th className={styles.headerCell}></th>
             </tr>
           </thead>

@@ -86,9 +86,11 @@
     font-weight: 400;
     text-decoration: none;
     text-transform: capitalize;
+    text-decoration: underline;
+    transition: 0.5 all ease;
 
     &:hover {
-      text-decoration: underline;
+      transform: scale(1.1);
     }
   }
 

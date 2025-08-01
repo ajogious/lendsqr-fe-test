@@ -3,8 +3,8 @@
   border: 1px solid rgba(33, 63, 125, 0.06);
   box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
   border-radius: 4px;
-  padding: 5px 10px;
   margin-top: 1.5rem;
+  padding: 30px;
 }
 
 .tableContainer {
@@ -20,13 +20,20 @@
 
 .headerCell {
   text-align: left;
-  padding: 0.55rem 1.5rem;
+  padding: 0.55rem 2.5rem 0.55rem 0.5rem;
   color: #545f7d;
   font-weight: 600;
   font-size: 14px;
   text-transform: uppercase;
   background-color: #ffffff;
   border-bottom: 1px solid rgba(33, 63, 125, 0.1);
+  white-space: nowrap;
+
+  .headerContent {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 }
 
 .row {
@@ -36,10 +43,43 @@
 }
 
 .cell {
-  padding: 5px 20px;
+  padding: 5px 0.5rem;
   color: #545f7d;
   font-size: 13px;
   border-bottom: 1px solid rgba(33, 63, 125, 0.1);
+  vertical-align: middle;
+}
+
+.filterIcon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+  margin-left: 4px;
+}
+
+.filterLine {
+  height: 2px;
+  background-color: #545f7d;
+  transition: all 0.2s ease;
+
+  &:nth-child(1) {
+    width: 18px;
+  }
+  &:nth-child(2) {
+    width: 14px;
+  }
+  &:nth-child(3) {
+    width: 10px;
+  }
+}
+
+// Hover effect
+.headerCell:hover {
+  .filterLine {
+    background-color: #213f7d;
+  }
 }
 
 .status {
@@ -50,6 +90,10 @@
   display: inline-block;
   text-align: center;
   text-transform: capitalize;
+  min-width: 80px; // Consistent width for status badges
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
   &.active {
     background-color: rgba(57, 205, 98, 0.06);
@@ -93,6 +137,28 @@
 
 .error {
   color: #e4033b;
+}
+
+.loaderContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.loader {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #39cdcc;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 // Responsive adjustments
