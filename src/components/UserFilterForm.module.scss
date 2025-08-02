@@ -51,6 +51,9 @@
   margin-top: 10px;
 
   button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex: 1;
     height: 36px;
     border-radius: 6px;

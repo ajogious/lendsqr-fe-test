@@ -34,6 +34,9 @@ const UserSummary = () => {
       try {
         setLoading(true);
         const data = await fetchUsers();
+        console.log("Raw data:", data);
+        console.log("Is Array:", Array.isArray(data));
+
         setUsers(data as User[]);
       } catch (error) {
         console.error("Error fetching user summary:", error);

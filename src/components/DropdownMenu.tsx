@@ -3,6 +3,7 @@ import styles from "./DropdownMenu.module.scss";
 
 interface DropdownItem {
   label: string;
+  icon: React.ReactNode;
   action: () => void;
 }
 
@@ -50,7 +51,8 @@ const DropdownMenu = ({ trigger, items }: DropdownMenuProps) => {
                 setIsOpen(false);
               }}
             >
-              {item.label}
+              <span className={styles.menuIcon}>{item.icon}</span>
+              <span>{item.label}</span>
             </div>
           ))}
         </div>

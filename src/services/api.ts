@@ -1,7 +1,9 @@
 import axios from "axios";
 import generatedJSON from "../data/generated.json";
 
-const BASE_URL = "https://lendsqr-users.free.beeceptor.com/userss";
+const BASE_URL = "https://lendsqr-users.free.beeceptor.com/users";
+
+console.log(generatedJSON);
 
 export const fetchUsers = async () => {
   try {

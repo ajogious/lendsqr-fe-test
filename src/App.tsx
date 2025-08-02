@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "./pages/Login";
 import DashboardPage from "./pages/Dashboard";
 import UsersPage from "./pages/Users";
-import UserDetailsPage from "./pages/UserDetails";
+import UserDetails from "./pages/UserDetails";
 
 function App() {
   return (
@@ -12,7 +12,8 @@ function App() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/dashboard" element={<DashboardPage />} />
       <Route path="/users" element={<UsersPage />} />
-      <Route path="/users/:id" element={<UserDetailsPage />} />
+      <Route path="/user-details/:id" element={<UserDetails />} />
+      {/* <Route path="*" element={<NotFoundPage />} /> */}
     </Routes>
   );
 }
