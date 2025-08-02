@@ -1,4 +1,4 @@
-import { useState, type ChangeEvent } from "react";
+import { useEffect, useState, type ChangeEvent } from "react";
 import { Bell, ChevronDown, Search } from "lucide-react";
 import lendsqrLogo from "../assets/Group.svg";
 import avatar from "../assets/avatar.png";
@@ -6,18 +6,30 @@ import styles from "./TopNav.module.scss";
 
 interface TopNavProps {
   onSearch: (value: string) => void;
-  onMenuToggle?: () => void;
+  onMenuToggle?: () => void; // Optional callback for toggling sidebar on mobile
 }
 
 const TopNav = ({ onSearch, onMenuToggle }: TopNavProps) => {
-  const [isSearchVisible, setIsSearchVisible] = useState(false);
+  const [isSearchVisible, setIsSearchVisible] = useState(false); // Mobile search toggle
+  const [username, setUsername] = useState(""); // Extracted username from email
 
+  // Trigger search when input value changes
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     onSearch(e.target.value);
   };
 
+  useEffect(() => {
+    // Get user's email from localStorage and derive username
+    const email = localStorage.getItem("userEmail");
+    if (email) {
+      const extractedUsername = email.split("@")[0] || "User";
+      setUsername(extractedUsername);
+    }
+  }, []);
+
   return (
     <header className={styles.topnav}>
+      {/* Left Section: Logo, Hamburger Menu, Desktop Search */}
       <div className={styles.leftSection}>
         {onMenuToggle && (
           <button
@@ -31,7 +43,7 @@ const TopNav = ({ onSearch, onMenuToggle }: TopNavProps) => {
 
         <img src={lendsqrLogo} alt="Lendsqr logo" className={styles.logo} />
 
-        {/* Full Search on Large Screens */}
+        {/* Desktop Search Input */}
         <div className={`${styles.searchContainer} ${styles.desktopOnly}`}>
           <input
             type="text"
@@ -45,6 +57,7 @@ const TopNav = ({ onSearch, onMenuToggle }: TopNavProps) => {
         </div>
       </div>
 
+      {/* Right Section: Docs link, notifications, profile, mobile search */}
       <div className={styles.rightSection}>
         <a href="#" className={styles.docsLink}>
           Docs
@@ -56,11 +69,11 @@ const TopNav = ({ onSearch, onMenuToggle }: TopNavProps) => {
 
         <div className={styles.profile}>
           <img src={avatar} alt="User profile" className={styles.avatar} />
-          <span className={styles.username}>Adedeji</span>
+          <span className={styles.username}>{username}</span>
           <ChevronDown className={styles.chevron} />
         </div>
 
-        {/* Toggle Search on Mobile */}
+        {/* Mobile Search Toggle Input/Icon */}
         <div className={styles.mobileSearchToggle}>
           {isSearchVisible ? (
             <input
