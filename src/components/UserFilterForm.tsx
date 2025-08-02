@@ -2,25 +2,22 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./UserFilterForm.module.scss";
 
+// Define types for individual user data
 interface User {
   organization: string;
   status: string;
 }
 
+// Props received from parent
 interface FilterFormProps {
-  onFilter: (filters: any) => void;
-  allUsers: User[];
-  onClose: () => void;
-  position: { top: number; left: number; width: number };
+  onFilter: (filters: any) => void; // Function to apply filters
+  allUsers: User[]; // Full list of users to extract filter options from
+  onClose: () => void; // Callback when filter form is closed
+  position: { top: number; left: number; width: number }; // (Not currently used) for dynamic positioning
 }
 
-const UserFilterForm = ({
-  onFilter,
-  allUsers,
-  onClose,
-  position,
-}: FilterFormProps) => {
-  const formRef = useRef<HTMLDivElement>(null);
+const UserFilterForm = ({ onFilter, allUsers, onClose }: FilterFormProps) => {
+  const formRef = useRef<HTMLDivElement>(null); // To detect outside clicks
   const [form, setForm] = useState({
     organization: "",
     username: "",
@@ -30,9 +27,11 @@ const UserFilterForm = ({
     status: "",
   });
 
+  // Extract unique values for organization and status
   const uniqueOrgs = Array.from(new Set(allUsers.map((u) => u.organization)));
   const uniqueStatuses = Array.from(new Set(allUsers.map((u) => u.status)));
 
+  // Handle input and select field changes
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -40,12 +39,14 @@ const UserFilterForm = ({
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onFilter(form);
-    onClose();
+    onFilter(form); // Pass form data to parent
+    onClose(); // Close the filter form
   };
 
+  // Reset form to default state
   const resetForm = () => {
     const cleared = {
       organization: "",
@@ -56,9 +57,10 @@ const UserFilterForm = ({
       status: "",
     };
     setForm(cleared);
-    onFilter(cleared);
+    onFilter(cleared); // Clear filters in parent
   };
 
+  // Detect and close form if user clicks outside the form area
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (formRef.current && !formRef.current.contains(event.target as Node)) {
@@ -77,6 +79,7 @@ const UserFilterForm = ({
       <div ref={formRef}>
         <div className={styles.formContainer}>
           <form className={styles.form} onSubmit={handleSubmit}>
+            {/* Organization Dropdown */}
             <div className={styles.formGroup}>
               <label>Organization</label>
               <select
@@ -93,6 +96,7 @@ const UserFilterForm = ({
               </select>
             </div>
 
+            {/* Username Field */}
             <div className={styles.formGroup}>
               <label>Username</label>
               <input
@@ -103,6 +107,7 @@ const UserFilterForm = ({
               />
             </div>
 
+            {/* Email Field */}
             <div className={styles.formGroup}>
               <label>Email</label>
               <input
@@ -113,6 +118,7 @@ const UserFilterForm = ({
               />
             </div>
 
+            {/* Date Field (type toggles on focus/blur) */}
             <div className={styles.formGroup}>
               <label>Date</label>
               <input
@@ -126,6 +132,7 @@ const UserFilterForm = ({
               />
             </div>
 
+            {/* Phone Field */}
             <div className={styles.formGroup}>
               <label>Phone Number</label>
               <input
@@ -136,6 +143,7 @@ const UserFilterForm = ({
               />
             </div>
 
+            {/* Status Dropdown */}
             <div className={styles.formGroup}>
               <label>Status</label>
               <select name="status" value={form.status} onChange={handleChange}>
@@ -148,6 +156,7 @@ const UserFilterForm = ({
               </select>
             </div>
 
+            {/* Action Buttons */}
             <div className={styles.buttonGroup}>
               <button
                 type="button"

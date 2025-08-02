@@ -1,8 +1,10 @@
+// SEO management with react-helmet-async
 import { Helmet } from "react-helmet-async";
 import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import styles from "./UserDetails.module.scss";
 
+// User interface defining structure of user data
 interface User {
   id: string;
   name: string;
@@ -40,12 +42,13 @@ interface User {
 }
 
 const UserDetails = () => {
-  const { id } = useParams();
+  const { id } = useParams(); // get user ID from URL
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
+  // Fetch user from localStorage
   useEffect(() => {
     const fetchUserData = () => {
       try {
@@ -59,7 +62,7 @@ const UserDetails = () => {
         setError(
           err instanceof Error ? err.message : "Failed to load user data"
         );
-        navigate("/dashboard");
+        navigate("/dashboard"); // redirect on error
       } finally {
         setLoading(false);
       }
@@ -68,6 +71,7 @@ const UserDetails = () => {
     fetchUserData();
   }, [id, navigate]);
 
+  // Render user's tier as star ratings
   const renderTierStars = () => {
     return Array(3)
       .fill(0)
@@ -81,6 +85,7 @@ const UserDetails = () => {
       ));
   };
 
+  // Format a number as Nigerian Naira
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat("en-NG", {
       style: "currency",
@@ -91,6 +96,7 @@ const UserDetails = () => {
       .replace("NGN", "₦");
   };
 
+  // Format user's monthly income range
   const formatIncomeRange = () => {
     if (user?.monthlyIncome?.length === 2) {
       return `${formatCurrency(user.monthlyIncome[0])}-${formatCurrency(
@@ -100,6 +106,7 @@ const UserDetails = () => {
     return formatCurrency(0);
   };
 
+  // Loading and error states
   if (loading) return <div className="loading">Loading...</div>;
   if (error) return <div className="error">{error}</div>;
   if (!user) return <div className="error">User data not available</div>;
@@ -111,6 +118,7 @@ const UserDetails = () => {
       </Helmet>
 
       <div className={styles.userDetailsContainer}>
+        {/* Header: Navigation and Actions */}
         <div className={styles.headerSection}>
           <div className={styles.userNav}>
             <div className={styles.navLinks}>
@@ -126,9 +134,12 @@ const UserDetails = () => {
             </div>
           </div>
         </div>
+
+        {/* User Main Content */}
         <div className={styles.userDetailsContent}>
           <h2 className={styles.sectionTitle}>User Details</h2>
 
+          {/* User Summary Section */}
           <div className={styles.userSummary}>
             <div className={styles.userProfile}>
               <div className={styles.userAvatar}>{user.name.charAt(0)}</div>
@@ -151,6 +162,7 @@ const UserDetails = () => {
             </div>
           </div>
 
+          {/* Tabbed Navigation UI (not functional yet) */}
           <div className={styles.userTabs}>
             <ul>
               <li className={styles.active}>General Details</li>
@@ -162,7 +174,9 @@ const UserDetails = () => {
             </ul>
           </div>
 
+          {/* User Information Sections */}
           <div className={styles.userDetailsSections}>
+            {/* Personal Info */}
             <section className={styles.personalInfo}>
               <h3>Personal Information</h3>
               <div className={styles.infoGrid}>
@@ -204,6 +218,7 @@ const UserDetails = () => {
               </div>
             </section>
 
+            {/* Education & Employment Info */}
             <section className={styles.educationEmployment}>
               <h3>Education and Employment</h3>
               <div className={styles.infoGrid}>
@@ -238,6 +253,7 @@ const UserDetails = () => {
               </div>
             </section>
 
+            {/* Social Media Info */}
             <section className={styles.socialsInfo}>
               <h3>Socials</h3>
               <div className={styles.infoGrid}>
@@ -256,6 +272,7 @@ const UserDetails = () => {
               </div>
             </section>
 
+            {/* Guarantor Information */}
             <section className={styles.guarantorInfo}>
               <h3>Guarantor</h3>
               <div className={styles.infoGrid}>

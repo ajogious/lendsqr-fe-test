@@ -1,13 +1,16 @@
 import { useEffect, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./UserAccountTable.module.scss";
 import { MoreVertical, Eye, UserX, UserCheck } from "lucide-react";
+
 import { fetchUsers } from "../services/api";
 import DropdownMenu from "./DropdownMenu";
 import UserFilterForm from "./UserFilterForm";
-import { useNavigate } from "react-router-dom";
 
+// Define user status types
 type UserStatus = "Active" | "Inactive" | "Pending" | "Blacklisted";
 
+// Define shape of user object
 interface User {
   id: string;
   name: string;
@@ -19,6 +22,7 @@ interface User {
   organization: string;
 }
 
+// Props expected by the table component
 interface UserAccountTableProps {
   searchQuery: string;
   currentPage: number;
@@ -32,24 +36,29 @@ const UserAccountTable = ({
   itemsPerPage,
   onFilteredLengthChange,
 }: UserAccountTableProps) => {
+  // Component state
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [filters, setFilters] = useState<any>({});
+
+  const [filters, setFilters] = useState<Record<string, string>>({});
   const [showFilterForm, setShowFilterForm] = useState(false);
   const [filterPosition, setFilterPosition] = useState({
     top: 0,
     left: 0,
     width: 0,
   });
+
   const tableRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
-  const handleViewUser = (user: { id: any }) => {
+  // Navigate to user detail page
+  const handleViewUser = (user: User) => {
     localStorage.setItem("selectedUser", JSON.stringify(user));
     navigate(`/dashboard/user-details/${user.id}`);
   };
 
+  // Fetch users on initial mount
   useEffect(() => {
     const loadUsers = async () => {
       try {
@@ -67,6 +76,7 @@ const UserAccountTable = ({
     loadUsers();
   }, [onFilteredLengthChange]);
 
+  // Format user date
   const formatDate = (rawDate: string) => {
     const date = new Date(rawDate);
     return date
@@ -81,10 +91,10 @@ const UserAccountTable = ({
       .replace(",", "");
   };
 
-  const formatPhoneNumber = (phone: string) => {
-    return "0" + phone;
-  };
+  // Format phone number with 0 prefix
+  const formatPhoneNumber = (phone: string) => `0${phone}`;
 
+  // Open filter form and set its position based on column header
   const handleFilterClick = (event: React.MouseEvent, index: number) => {
     const headerElement = event.currentTarget.closest("th");
     if (headerElement) {
@@ -98,8 +108,10 @@ const UserAccountTable = ({
     }
   };
 
+  // Apply global search + form filters
   const filteredUsers = users.filter((user) => {
     const query = searchQuery.toLowerCase();
+
     const matchesSearch =
       user.organization?.toLowerCase().includes(query) ||
       user.username?.toLowerCase().includes(query) ||
@@ -120,16 +132,19 @@ const UserAccountTable = ({
     return matchesSearch && matchesForm;
   });
 
+  // Notify parent of filtered result count
   useEffect(() => {
     onFilteredLengthChange?.(filteredUsers.length);
   }, [filteredUsers, onFilteredLengthChange]);
 
+  // Paginate users
   const startIndex = (currentPage - 1) * itemsPerPage;
   const paginatedUsers = filteredUsers.slice(
     startIndex,
     startIndex + itemsPerPage
   );
 
+  // Renders the custom filter icon per header column
   const FilterIcon = ({ index }: { index: number }) => (
     <div
       className={styles.filterIcon}
@@ -141,6 +156,7 @@ const UserAccountTable = ({
     </div>
   );
 
+  // Loading state
   if (loading) {
     return (
       <div className={styles.loaderContainer}>
@@ -149,12 +165,14 @@ const UserAccountTable = ({
     );
   }
 
+  // Error state
   if (error) {
     return <div className={styles.error}>{error}</div>;
   }
 
   return (
     <div className={styles.container} ref={tableRef}>
+      {/* Conditionally render filter form as overlay */}
       {showFilterForm && (
         <UserFilterForm
           onFilter={setFilters}
@@ -164,6 +182,7 @@ const UserAccountTable = ({
         />
       )}
 
+      {/* Empty state if no user matches */}
       {paginatedUsers.length === 0 ? (
         <div className={styles.noResults}>No users found</div>
       ) : (
@@ -171,6 +190,7 @@ const UserAccountTable = ({
           <table className={styles.table}>
             <thead>
               <tr>
+                {/* Render table headers with filters */}
                 {[
                   "Organization",
                   "Username",
@@ -186,7 +206,8 @@ const UserAccountTable = ({
                     </div>
                   </th>
                 ))}
-                <th className={styles.headerCell}></th>
+                <th className={styles.headerCell}></th>{" "}
+                {/* For dropdown actions */}
               </tr>
             </thead>
             <tbody>
@@ -220,12 +241,12 @@ const UserAccountTable = ({
                         {
                           label: "Blacklist User",
                           icon: <UserX size={16} />,
-                          action: () => {},
+                          action: () => {}, // Hook to blacklist logic
                         },
                         {
                           label: "Activate User",
                           icon: <UserCheck size={16} />,
-                          action: () => {},
+                          action: () => {}, // Hook to activate logic
                         },
                       ]}
                     />

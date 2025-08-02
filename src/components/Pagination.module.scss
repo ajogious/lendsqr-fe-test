@@ -1,3 +1,4 @@
+// Container for the entire pagination section
 .container {
   display: flex;
   justify-content: space-between;
@@ -9,6 +10,7 @@
   padding: 1rem 0;
 }
 
+// Text showing "Showing x out of y"
 .showingText {
   font-weight: 400;
   display: flex;
@@ -16,6 +18,7 @@
   gap: 8px;
 }
 
+// Dropdown for selecting items per page
 .itemsPerPageSelect {
   background-color: rgba(33, 63, 125, 0.1);
   border: 1px solid rgba(33, 63, 125, 0.1);
@@ -25,6 +28,8 @@
   font-weight: 500;
   cursor: pointer;
   appearance: none;
+
+  // Custom arrow icon for dropdown
   background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: right 4px center;
@@ -37,17 +42,20 @@
   }
 }
 
+// Styling for total items text
 .totalItems {
   font-weight: 500;
   color: #213f7d;
 }
 
+// Wrapper for page navigation buttons and numbers
 .paginationControls {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
+// Navigation arrows (left/right)
 .navButton {
   background-color: rgba(33, 63, 125, 0.1);
   border: 1px solid rgba(33, 63, 125, 0.1);
@@ -60,21 +68,25 @@
   justify-content: center;
   transition: all 0.2s ease;
 
+  // Hover effect for enabled buttons
   &:hover:not(:disabled) {
     background-color: rgba(33, 63, 125, 0.2);
   }
 
+  // Disabled state styling
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }
 }
 
+// Container for the list of page number buttons
 .pageNumbers {
   display: flex;
   gap: 4px;
 }
 
+// Individual page number button
 .pageButton {
   min-width: 24px;
   height: 24px;
@@ -90,10 +102,12 @@
   justify-content: center;
   transition: all 0.2s ease;
 
+  // Hover style
   &:hover {
     color: #213f7d;
   }
 
+  // Active page style
   &.active {
     background-color: rgba(33, 63, 125, 0.1);
     color: #213f7d;
@@ -101,6 +115,7 @@
   }
 }
 
+// Ellipsis between page numbers
 .ellipsis {
   display: flex;
   align-items: center;
@@ -110,16 +125,19 @@
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
+  // Stack layout on small screens
   .container {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
   }
 
+  // Align pagination controls to the end
   .paginationControls {
     align-self: flex-end;
   }
 
+  // Hide page numbers on small screens
   .pageNumbers {
     display: none;
   }

@@ -1,3 +1,7 @@
+// ==============================
+// Base Container Styling
+// ==============================
+
 .container {
   background: #ffffff;
   border: 1px solid rgba(33, 63, 125, 0.06);
@@ -5,25 +9,37 @@
   border-radius: 4px;
   margin-top: 1.5rem;
   padding: 30px;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 }
 
+// ==============================
+// Table Wrapper
+// ==============================
+
 .tableContainer {
-  overflow-x: auto;
+  overflow-x: auto; // Enables horizontal scroll on small screens
   width: 100%;
 }
 
 .table {
   width: 100%;
-  border-collapse: collapse;
   min-width: 800px;
+  border-collapse: collapse; // Remove spacing between table cells
 }
+
+// ==============================
+// Table Header
+// ==============================
 
 .headerCell {
   text-align: left;
   padding: 0.55rem 2.5rem 0.55rem 0.5rem;
-  color: #545f7d;
-  font-weight: 600;
   font-size: 14px;
+  font-weight: 600;
+  color: #545f7d;
   text-transform: uppercase;
   background-color: #ffffff;
   border-bottom: 1px solid rgba(33, 63, 125, 0.1);
@@ -34,21 +50,46 @@
     align-items: center;
     gap: 8px;
   }
-}
 
-.row {
-  &:hover {
-    background-color: rgba(57, 205, 204, 0.03);
+  // On hover, darken filter lines for better visibility
+  &:hover .filterLine {
+    background-color: #213f7d;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.75rem 1rem;
   }
 }
 
+// ==============================
+// Table Rows
+// ==============================
+
+.row {
+  &:hover {
+    background-color: rgba(57, 205, 204, 0.03); // Light teal hover effect
+  }
+}
+
+// ==============================
+// Table Cells
+// ==============================
+
 .cell {
   padding: 5px 0.5rem;
-  color: #545f7d;
   font-size: 13px;
+  color: #545f7d;
   border-bottom: 1px solid rgba(33, 63, 125, 0.1);
   vertical-align: middle;
+
+  @media (max-width: 768px) {
+    padding: 0.75rem 1rem;
+  }
 }
+
+// ==============================
+// Filter Icon (3 stacked bars)
+// ==============================
 
 .filterIcon {
   display: flex;
@@ -75,25 +116,23 @@
   }
 }
 
-.headerCell:hover {
-  .filterLine {
-    background-color: #213f7d;
-  }
-}
+// ==============================
+// Status Badge Styles
+// ==============================
 
 .status {
-  padding: 0.5rem 0.875rem;
-  border-radius: 100px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  display: inline-block;
-  text-align: center;
-  text-transform: capitalize;
-  min-width: 80px; // Consistent width for status badges
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  padding: 0.5rem 0.875rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-align: center;
+  text-transform: capitalize;
+  min-width: 80px; // Keeps badge width consistent
+  border-radius: 100px;
 
+  // Each status has its own color scheme
   &.active {
     background-color: rgba(57, 205, 98, 0.06);
     color: #39cd62;
@@ -115,15 +154,23 @@
   }
 }
 
+// ==============================
+// More (Dropdown Trigger) Icon
+// ==============================
+
 .moreIcon {
   cursor: pointer;
   color: #545f7d;
   transition: transform 0.2s ease;
 
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.1); // Slight zoom on hover
   }
 }
+
+// ==============================
+// UI Feedback States
+// ==============================
 
 .loading,
 .error,
@@ -135,8 +182,12 @@
 }
 
 .error {
-  color: #e4033b;
+  color: #e4033b; // Alert red
 }
+
+// ==============================
+// Loader Spinner
+// ==============================
 
 .loaderContainer {
   display: flex;
@@ -157,16 +208,5 @@
 @keyframes spin {
   to {
     transform: rotate(360deg);
-  }
-}
-
-@media (max-width: 768px) {
-  .container {
-    padding: 1rem;
-  }
-
-  .headerCell,
-  .cell {
-    padding: 0.75rem 1rem;
   }
 }

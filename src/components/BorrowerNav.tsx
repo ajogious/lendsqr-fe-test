@@ -24,21 +24,23 @@ import styles from "./BorrowerNav.module.scss";
 import { useState } from "react";
 
 const BorrowerNav = () => {
-  const location = useLocation();
+  const location = useLocation(); // Used to determine active link
   const [activePlaceholder, setActivePlaceholder] = useState<string | null>(
     null
-  );
+  ); // For handling non-route items
 
   const handlePlaceholderClick = (text: string) => {
-    setActivePlaceholder(text);
+    setActivePlaceholder(text); // Update current active placeholder
   };
 
   const isActive = (to: string, text: string) => {
+    // Determines whether an item is active based on route or placeholder
     if (to !== "#") return location.pathname === to;
     return activePlaceholder === text;
   };
 
   const handleLogout = () => {
+    // Clear user data and redirect to login page
     localStorage.removeItem("loggedIn");
     localStorage.removeItem("selectedUser");
     window.location.href = "/login";
@@ -46,18 +48,21 @@ const BorrowerNav = () => {
 
   return (
     <nav className={styles.sidebarNav}>
+      {/* Organization Selector */}
       <div className={styles.organization}>
         <Briefcase className={styles.orgIcon} />
         <span>Switch Organization</span>
         <ChevronDown className={styles.chevron} />
       </div>
 
+      {/* Static Dashboard Link */}
       <SidebarItem
         icon={<Users className={styles.icon} />}
         text="Dashboard"
         to="/dashboard"
       />
 
+      {/* Customers Section */}
       <p className={styles.sectionTitle}>CUSTOMERS</p>
       <NavLink
         to="/dashboard"
@@ -111,6 +116,7 @@ const BorrowerNav = () => {
         isActive={isActive("#", "Karma")}
       />
 
+      {/* Businesses Section */}
       <p className={styles.sectionTitle}>BUSINESSES</p>
       <SidebarItem
         icon={<Briefcase className={styles.icon} />}
@@ -167,6 +173,7 @@ const BorrowerNav = () => {
         isActive={isActive("#", "Reports")}
       />
 
+      {/* Settings Section */}
       <p className={styles.sectionTitle}>SETTINGS</p>
       <SidebarItem
         icon={<Sliders className={styles.icon} />}
@@ -186,6 +193,8 @@ const BorrowerNav = () => {
         onActivate={handlePlaceholderClick}
         isActive={isActive("#", "Audit Logs")}
       />
+
+      {/* Conditional Items (only for user details page) */}
       {location.pathname.includes("/dashboard/user-details") && (
         <>
           <SidebarItem
@@ -209,6 +218,7 @@ const BorrowerNav = () => {
   );
 };
 
+// SidebarItem Component
 const SidebarItem = ({
   icon,
   text,
@@ -226,10 +236,10 @@ const SidebarItem = ({
 }) => {
   const handleClick = (e: React.MouseEvent) => {
     if (to === "#") {
-      e.preventDefault();
+      e.preventDefault(); // Prevent routing if it's a placeholder
       onActivate?.(text);
     }
-    onClick?.();
+    onClick?.(); // Optional callback
   };
 
   return (

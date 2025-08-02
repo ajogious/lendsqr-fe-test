@@ -17,14 +17,15 @@ const Dashboard = () => {
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const navigate = useNavigate();
 
-  // Check if we're on a user details page
+  // Check if current route is a user details page
   const isUserDetailsPage = location.pathname.includes("/user-details");
 
+  // Reset to page 1 on search or item-per-page change
   useEffect(() => {
     setCurrentPage(1);
   }, [search, itemsPerPage]);
 
-  // Check login on mount
+  // Redirect to login if user is not authenticated
   useEffect(() => {
     const loggedIn = localStorage.getItem("loggedIn");
     if (!loggedIn) {
@@ -32,7 +33,7 @@ const Dashboard = () => {
     }
   }, [navigate]);
 
-  // Resize logic
+  // Close sidebar on large screens when resizing
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
@@ -44,23 +45,27 @@ const Dashboard = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Prevent background scrolling when sidebar is open on mobile
   useEffect(() => {
     document.body.style.overflow = isMobileSidebarOpen ? "hidden" : "auto";
   }, [isMobileSidebarOpen]);
 
   return (
     <>
+      {/* Set page title */}
       <Helmet>
         <title>Lendsqr | Dashboard</title>
       </Helmet>
 
       <div className={styles.dashboardLayout}>
+        {/* Top navigation bar with search and menu toggle */}
         <TopNav
           onSearch={setSearch}
           onMenuToggle={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
         />
 
         <main className={styles.mainContent}>
+          {/* Sidebar navigation */}
           <aside
             className={`${styles.sidebar} ${
               isMobileSidebarOpen ? styles.sidebarOpen : ""
@@ -71,13 +76,16 @@ const Dashboard = () => {
             </div>
           </aside>
 
+          {/* Dark overlay when mobile sidebar is open */}
           {isMobileSidebarOpen && (
             <div
               className={styles.sidebarOverlay}
               onClick={() => setIsMobileSidebarOpen(false)}
             />
           )}
+
           <div className={styles.contentWrapper}>
+            {/* Conditionally show main dashboard or user details */}
             {!isUserDetailsPage ? (
               <>
                 <UserSummary />
@@ -98,7 +106,7 @@ const Dashboard = () => {
                 </div>
               </>
             ) : (
-              <Outlet /> // This will render the UserDetails component
+              <Outlet /> // Display user details page
             )}
           </div>
         </main>

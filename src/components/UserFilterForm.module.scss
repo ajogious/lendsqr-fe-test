@@ -1,3 +1,4 @@
+// User filter form styles
 .form {
   display: flex;
   flex-direction: column;
@@ -9,9 +10,10 @@
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
   max-height: 95vh;
-  overflow-y: auto;
+  overflow-y: auto; // Allows vertical scroll if content exceeds height
 }
 
+// Each input group: label + input/select
 .formGroup {
   display: flex;
   flex-direction: column;
@@ -38,12 +40,13 @@
     }
 
     &:focus {
-      border-color: #39cdcc;
+      border-color: #39cdcc; // Highlight border on focus
       background-color: #ffffff;
     }
   }
 }
 
+// Filter/Reset button group at the bottom
 .buttonGroup {
   display: flex;
   justify-content: space-between;
@@ -80,6 +83,7 @@
   }
 }
 
+// Dimmed overlay background behind the form
 .overlay {
   position: fixed;
   inset: 0;
@@ -91,6 +95,7 @@
   padding: 20px;
 }
 
+// Container that positions the form within the overlay
 .formContainer {
   margin-top: 0px;
   margin-left: 50px;
