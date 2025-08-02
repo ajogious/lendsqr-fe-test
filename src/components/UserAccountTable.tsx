@@ -47,7 +47,7 @@ const UserAccountTable = ({
 
   const handleViewUser = (user: { id: any }) => {
     localStorage.setItem("selectedUser", JSON.stringify(user));
-    navigate(`/user-details/${user.id}`);
+    navigate(`/dashboard/user-details/${user.id}`);
   };
 
   useEffect(() => {

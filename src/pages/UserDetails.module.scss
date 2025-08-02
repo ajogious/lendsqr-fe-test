@@ -1,0 +1,439 @@
+.userDetailsContainer {
+  font-family: "Work Sans", sans-serif;
+  color: #213f7d;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding: 15px;
+  }
+}
+
+.headerSection {
+  margin-bottom: 40px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 30px;
+  }
+}
+
+.searchHeader {
+  h1 {
+    font-size: 24px;
+    margin: 0;
+    color: #213f7d;
+
+    @media (max-width: 768px) {
+      font-size: 20px;
+    }
+  }
+  p {
+    font-size: 14px;
+    color: #545f7d;
+    margin: 5px 0 0;
+  }
+}
+
+.userNav {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.switchOrg {
+  font-size: 14px;
+  color: #213f7d;
+  margin-bottom: 20px;
+}
+
+.navLinks {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+}
+
+.backLink {
+  color: #545f7d;
+  text-decoration: none;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+}
+
+.userActions {
+  display: flex;
+  gap: 15px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  button {
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 12px;
+    cursor: pointer;
+    text-transform: uppercase;
+    border: 1px solid;
+    background: transparent;
+
+    @media (max-width: 480px) {
+      padding: 8px 12px;
+      font-size: 11px;
+    }
+
+    &.blacklistButton {
+      border-color: #e4033b;
+      color: #e4033b;
+    }
+
+    &.activateButton {
+      border-color: #39cd62;
+      color: #39cd62;
+    }
+  }
+}
+
+.sectionTitle {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 30px;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+.userSummary {
+  background: #ffffff;
+  border: 1px solid rgba(33, 63, 125, 0.06);
+  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-bottom: 30px;
+
+  @media (max-width: 992px) {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 15px;
+  }
+
+  .userProfile {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex: 1;
+    min-width: 250px;
+
+    @media (max-width: 480px) {
+      flex-direction: column;
+      text-align: center;
+      gap: 10px;
+    }
+
+    .userAvatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(33, 63, 125, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(33, 63, 125, 0.4);
+      font-size: 24px;
+      font-weight: bold;
+
+      @media (max-width: 480px) {
+        width: 60px;
+        height: 60px;
+        font-size: 20px;
+      }
+    }
+
+    .userName {
+      h2 {
+        margin: 0;
+        font-size: 22px;
+        color: #213f7d;
+
+        @media (max-width: 480px) {
+          font-size: 18px;
+        }
+      }
+
+      p {
+        margin: 5px 0 0;
+        color: #545f7d;
+        font-size: 14px;
+
+        @media (max-width: 480px) {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  .userTier {
+    padding: 0 30px;
+    border-left: 1px solid rgba(84, 95, 125, 0.2);
+    border-right: 1px solid rgba(84, 95, 125, 0.2);
+    min-width: 200px;
+
+    @media (max-width: 992px) {
+      border-left: none;
+      border-right: none;
+      border-top: 1px solid rgba(84, 95, 125, 0.2);
+      border-bottom: 1px solid rgba(84, 95, 125, 0.2);
+      padding: 20px 0;
+      min-width: 100%;
+    }
+
+    p {
+      margin: 0 0 10px;
+      color: #545f7d;
+      font-size: 14px;
+    }
+
+    .stars {
+      display: flex;
+      gap: 5px;
+      color: #e9b200;
+
+      .star {
+        color: #e9b200;
+        font-size: 16px;
+
+        &.active {
+          color: #e9b200;
+        }
+      }
+    }
+  }
+
+  .userAccount {
+    flex: 1;
+    min-width: 200px;
+
+    h2 {
+      margin: 0;
+      font-size: 22px;
+      color: #213f7d;
+
+      @media (max-width: 480px) {
+        font-size: 18px;
+      }
+    }
+
+    p {
+      margin: 5px 0 0;
+      color: #213f7d;
+      font-size: 12px;
+    }
+  }
+}
+
+.userTabs {
+  margin-bottom: 30px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  @media (max-width: 768px) {
+    margin-bottom: 20px;
+  }
+
+  ul {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid rgba(33, 63, 125, 0.1);
+    min-width: max-content;
+
+    @media (max-width: 768px) {
+      gap: 20px;
+    }
+
+    @media (max-width: 480px) {
+      gap: 15px;
+    }
+
+    li {
+      cursor: pointer;
+      padding: 10px 0;
+      color: rgba(0, 0, 0, 0.8);
+      font-size: 16px;
+      position: relative;
+      white-space: nowrap;
+
+      @media (max-width: 768px) {
+        font-size: 14px;
+        padding: 8px 0;
+      }
+
+      &.active {
+        color: #39cdcc;
+        font-weight: 400;
+
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 2px;
+          background: #39cdcc;
+        }
+      }
+    }
+  }
+}
+
+.userDetailsSections {
+  background: #ffffff;
+  border: 1px solid rgba(33, 63, 125, 0.06);
+  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
+  padding: 30px;
+
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 15px;
+  }
+
+  section {
+    margin-bottom: 30px;
+    padding-bottom: 30px; // Add padding to create space for border
+    border-bottom: 1px solid rgba(33, 63, 125, 0.1); // Add the borde
+
+    @media (max-width: 768px) {
+      margin-bottom: 25px;
+      padding-bottom: 25px;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0; // Remove padding from last section
+      border-bottom: none;
+    }
+
+    h3 {
+      color: #213f7d;
+      font-size: 16px;
+      font-weight: 500;
+      margin: 0 0 30px;
+
+      @media (max-width: 768px) {
+        margin-bottom: 20px;
+        font-size: 15px;
+      }
+    }
+
+    .infoGrid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 30px;
+      row-gap: 30px;
+
+      @media (max-width: 992px) {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+        row-gap: 25px;
+      }
+
+      @media (max-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        row-gap: 20px;
+      }
+
+      @media (max-width: 480px) {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      .infoItem {
+        strong {
+          display: block;
+          font-size: 12px;
+          color: #545f7d;
+          text-transform: uppercase;
+          margin-bottom: 8px;
+          font-weight: 400;
+        }
+
+        span {
+          font-size: 16px;
+          color: #545f7d;
+          font-weight: 500;
+          word-break: break-word;
+
+          @media (max-width: 768px) {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.educationEmployment {
+  .infoGrid {
+    grid-template-columns: repeat(4, 1fr) !important;
+
+    @media (max-width: 992px) {
+      grid-template-columns: repeat(3, 1fr) !important;
+    }
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr !important;
+    }
+  }
+}
+
+.loading,
+.error {
+  padding: 30px;
+  text-align: center;
+  font-size: 18px;
+  color: #545f7d;
+
+  @media (max-width: 768px) {
+    padding: 20px;
+    font-size: 16px;
+  }
+}

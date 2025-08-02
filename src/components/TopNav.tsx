@@ -1,6 +1,7 @@
 import { useState, type ChangeEvent } from "react";
 import { Bell, ChevronDown, Search } from "lucide-react";
 import lendsqrLogo from "../assets/Group.svg";
+import avatar from "../assets/avatar.png";
 import styles from "./TopNav.module.scss";
 
 interface TopNavProps {
@@ -54,11 +55,7 @@ const TopNav = ({ onSearch, onMenuToggle }: TopNavProps) => {
         </div>
 
         <div className={styles.profile}>
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png?20200919003010"
-            alt="User profile"
-            className={styles.avatar}
-          />
+          <img src={avatar} alt="User profile" className={styles.avatar} />
           <span className={styles.username}>Adedeji</span>
           <ChevronDown className={styles.chevron} />
         </div>

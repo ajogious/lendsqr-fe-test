@@ -17,6 +17,8 @@ import {
   Settings,
   ChevronDown,
   LayoutDashboard,
+  MessageSquare,
+  LogOut,
 } from "lucide-react";
 import styles from "./BorrowerNav.module.scss";
 import { useState } from "react";
@@ -36,6 +38,12 @@ const BorrowerNav = () => {
     return activePlaceholder === text;
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("loggedIn");
+    localStorage.removeItem("selectedUser");
+    window.location.href = "/login";
+  };
+
   return (
     <nav className={styles.sidebarNav}>
       <div className={styles.organization}>
@@ -44,6 +52,13 @@ const BorrowerNav = () => {
         <ChevronDown className={styles.chevron} />
       </div>
 
+      <SidebarItem
+        icon={<Users className={styles.icon} />}
+        text="Dashboard"
+        to="/dashboard"
+      />
+
+      <p className={styles.sectionTitle}>CUSTOMERS</p>
       <NavLink
         to="/dashboard"
         className={({ isActive }) =>
@@ -51,15 +66,8 @@ const BorrowerNav = () => {
         }
       >
         <LayoutDashboard className={styles.icon} />
-        <span>Dashboard</span>
+        <span>Users</span>
       </NavLink>
-
-      <p className={styles.sectionTitle}>CUSTOMERS</p>
-      <SidebarItem
-        icon={<Users className={styles.icon} />}
-        text="Users"
-        to="/dashboard/users"
-      />
       <SidebarItem
         icon={<UserCheck className={styles.icon} />}
         text="Guarantors"
@@ -178,6 +186,25 @@ const BorrowerNav = () => {
         onActivate={handlePlaceholderClick}
         isActive={isActive("#", "Audit Logs")}
       />
+      {location.pathname.includes("/dashboard/user-details") && (
+        <>
+          <SidebarItem
+            icon={<MessageSquare className={styles.icon} />}
+            text="System Messages"
+            onActivate={handlePlaceholderClick}
+            isActive={isActive("#", "System Messages")}
+          />
+          <hr />
+          <SidebarItem
+            icon={<LogOut className={styles.icon} />}
+            text="Logout"
+            onActivate={handlePlaceholderClick}
+            isActive={isActive("#", "Logout")}
+            onClick={handleLogout}
+          />
+          <SidebarItem icon={""} text="v1.2.0" />
+        </>
+      )}
     </nav>
   );
 };
@@ -188,18 +215,21 @@ const SidebarItem = ({
   to = "#",
   onActivate,
   isActive = false,
+  onClick,
 }: {
   icon: React.ReactNode;
   text: string;
   to?: string;
   onActivate?: (text: string) => void;
   isActive?: boolean;
+  onClick?: () => void;
 }) => {
   const handleClick = (e: React.MouseEvent) => {
     if (to === "#") {
       e.preventDefault();
       onActivate?.(text);
     }
+    onClick?.();
   };
 
   return (

@@ -60,7 +60,8 @@ const Login = () => {
 
     if (valid) {
       console.log("Form submitted:", formData);
-      // authentication logic here
+      localStorage.setItem("loggedIn", "true"); // mark as logged in
+      window.location.href = "/dashboard"; // redirect
     }
   };
 
