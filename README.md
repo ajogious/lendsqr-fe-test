@@ -81,7 +81,7 @@ Mock Data: Integrated Beeceptor to simulate real API
 
 📦 Deployment
 Deployed to: https://lendsqr-fe-test-rust-seven.vercel.app/
-Loom walkthrough: Watch Demo
+Loom https://www.loom.com/share/3eb33ea56d094e62ab44f3eb72ee5b12?sid=607f501a-34fc-4a7e-acdf-3a1481334321
 
 🙋 Author
 Abdulmumuni Ajoge Adavize
