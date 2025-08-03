@@ -87,5 +87,8 @@ Deployed to: https://lendsqr-fe-test.vercel.app
 Loom walkthrough: Watch Demo
 
 🙋 Author
-Abdulmumuni Ajoge
+Abdulmumuni Ajoge Adavize
+LinkedIn: https://www.linkedin.com/in/aajoge
+GitHub: https://github.com/ajogious
+
 ```
