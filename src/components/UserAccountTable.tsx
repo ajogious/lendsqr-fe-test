@@ -95,7 +95,7 @@ const UserAccountTable = ({
   const formatPhoneNumber = (phone: string) => `0${phone}`;
 
   // Open filter form and set its position based on column header
-  const handleFilterClick = (event: React.MouseEvent, index: number) => {
+  const handleFilterClick = (event: React.MouseEvent, _index: number) => {
     const headerElement = event.currentTarget.closest("th");
     if (headerElement) {
       const rect = headerElement.getBoundingClientRect();
