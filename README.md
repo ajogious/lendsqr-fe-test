@@ -48,11 +48,8 @@ Tooling	Vite
 
 🧪 Testing Summary
 ✅ Login form unit tests (validations, submission)
-
 ✅ User table renders and fetch test
-
 ✅ Routing from login → dashboard → user detail
-
 ✅ Basic localStorage test
 
 To run tests:
