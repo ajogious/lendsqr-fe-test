@@ -80,7 +80,7 @@ Routing: Used route guards via localStorage login check
 Mock Data: Integrated Beeceptor to simulate real API
 
 📦 Deployment
-Deployed to: https://lendsqr-fe-test.vercel.app
+Deployed to: https://lendsqr-fe-test-rust-seven.vercel.app/
 Loom walkthrough: Watch Demo
 
 🙋 Author
