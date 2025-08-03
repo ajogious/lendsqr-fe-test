@@ -13,15 +13,19 @@
     "test:run": "vitest run"
   },
   "dependencies": {
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.6.4",
+    "@testing-library/react": "^16.3.0",
     "axios": "^1.11.0",
     "localforage": "^1.10.0",
     "lucide-react": "^0.534.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-helmet-async": "^2.0.5",
     "react-router-dom": "^7.7.1",
     "sass": "^1.89.2",
-    "typeface-work-sans": "^1.1.13"
+    "typeface-work-sans": "^1.1.13",
+    "vitest": "^3.2.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",
