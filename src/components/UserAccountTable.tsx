@@ -22,7 +22,6 @@ interface User {
   organization: string;
 }
 
-// Props expected by the table component
 interface UserAccountTableProps {
   searchQuery: string;
   currentPage: number;
@@ -36,7 +35,6 @@ const UserAccountTable = ({
   itemsPerPage,
   onFilteredLengthChange,
 }: UserAccountTableProps) => {
-  // Component state
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -52,31 +50,36 @@ const UserAccountTable = ({
   const tableRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
-  // Navigate to user detail page
   const handleViewUser = (user: User) => {
     localStorage.setItem("selectedUser", JSON.stringify(user));
     navigate(`/dashboard/user-details/${user.id}`);
   };
 
-  // Fetch users on initial mount
   useEffect(() => {
     const loadUsers = async () => {
       try {
         setLoading(true);
         const data = await fetchUsers();
-        setUsers(data as User[]);
-        onFilteredLengthChange?.(data.length);
+
+        if (Array.isArray(data)) {
+          setUsers(data);
+          onFilteredLengthChange?.(data.length);
+        } else {
+          console.error("Expected array but got:", data);
+          setUsers([]);
+          onFilteredLengthChange?.(0);
+        }
       } catch (err) {
-        console.error(err);
+        console.error("Failed to fetch users:", err);
         setError("Failed to load users. Please try again.");
       } finally {
         setLoading(false);
       }
     };
+
     loadUsers();
   }, [onFilteredLengthChange]);
 
-  // Format user date
   const formatDate = (rawDate: string) => {
     const date = new Date(rawDate);
     return date
@@ -91,10 +94,8 @@ const UserAccountTable = ({
       .replace(",", "");
   };
 
-  // Format phone number with 0 prefix
   const formatPhoneNumber = (phone: string) => `0${phone}`;
 
-  // Open filter form and set its position based on column header
   const handleFilterClick = (event: React.MouseEvent, _index: number) => {
     const headerElement = event.currentTarget.closest("th");
     if (headerElement) {
@@ -108,43 +109,41 @@ const UserAccountTable = ({
     }
   };
 
-  // Apply global search + form filters
-  const filteredUsers = users.filter((user) => {
-    const query = searchQuery.toLowerCase();
+  const filteredUsers = Array.isArray(users)
+    ? users.filter((user) => {
+        const query = searchQuery.toLowerCase();
 
-    const matchesSearch =
-      user.organization?.toLowerCase().includes(query) ||
-      user.username?.toLowerCase().includes(query) ||
-      user.email?.toLowerCase().includes(query) ||
-      user.phone?.toLowerCase().includes(query) ||
-      formatDate(user.dateJoined).toLowerCase().includes(query) ||
-      user.status?.toLowerCase().includes(query);
+        const matchesSearch =
+          user.organization?.toLowerCase().includes(query) ||
+          user.username?.toLowerCase().includes(query) ||
+          user.email?.toLowerCase().includes(query) ||
+          user.phone?.toLowerCase().includes(query) ||
+          formatDate(user.dateJoined).toLowerCase().includes(query) ||
+          user.status?.toLowerCase().includes(query);
 
-    const matchesForm =
-      (!filters.organization ||
-        user.organization.includes(filters.organization)) &&
-      (!filters.username || user.username.includes(filters.username)) &&
-      (!filters.email || user.email.includes(filters.email)) &&
-      (!filters.phone || user.phone.includes(filters.phone)) &&
-      (!filters.date || user.dateJoined.startsWith(filters.date)) &&
-      (!filters.status || user.status === filters.status);
+        const matchesForm =
+          (!filters.organization ||
+            user.organization.includes(filters.organization)) &&
+          (!filters.username || user.username.includes(filters.username)) &&
+          (!filters.email || user.email.includes(filters.email)) &&
+          (!filters.phone || user.phone.includes(filters.phone)) &&
+          (!filters.date || user.dateJoined.startsWith(filters.date)) &&
+          (!filters.status || user.status === filters.status);
 
-    return matchesSearch && matchesForm;
-  });
+        return matchesSearch && matchesForm;
+      })
+    : [];
 
-  // Notify parent of filtered result count
   useEffect(() => {
     onFilteredLengthChange?.(filteredUsers.length);
   }, [filteredUsers, onFilteredLengthChange]);
 
-  // Paginate users
   const startIndex = (currentPage - 1) * itemsPerPage;
   const paginatedUsers = filteredUsers.slice(
     startIndex,
     startIndex + itemsPerPage
   );
 
-  // Renders the custom filter icon per header column
   const FilterIcon = ({ index }: { index: number }) => (
     <div
       className={styles.filterIcon}
@@ -156,7 +155,6 @@ const UserAccountTable = ({
     </div>
   );
 
-  // Loading state
   if (loading) {
     return (
       <div className={styles.loaderContainer}>
@@ -165,14 +163,12 @@ const UserAccountTable = ({
     );
   }
 
-  // Error state
   if (error) {
     return <div className={styles.error}>{error}</div>;
   }
 
   return (
     <div className={styles.container} ref={tableRef}>
-      {/* Conditionally render filter form as overlay */}
       {showFilterForm && (
         <UserFilterForm
           onFilter={setFilters}
@@ -182,7 +178,6 @@ const UserAccountTable = ({
         />
       )}
 
-      {/* Empty state if no user matches */}
       {paginatedUsers.length === 0 ? (
         <div className={styles.noResults}>No users found</div>
       ) : (
@@ -190,7 +185,6 @@ const UserAccountTable = ({
           <table className={styles.table}>
             <thead>
               <tr>
-                {/* Render table headers with filters */}
                 {[
                   "Organization",
                   "Username",
@@ -240,12 +234,12 @@ const UserAccountTable = ({
                         {
                           label: "Blacklist User",
                           icon: <UserX size={16} />,
-                          action: () => {}, // Hook to blacklist logic
+                          action: () => {},
                         },
                         {
                           label: "Activate User",
                           icon: <UserCheck size={16} />,
-                          action: () => {}, // Hook to activate logic
+                          action: () => {},
                         },
                       ]}
                     />

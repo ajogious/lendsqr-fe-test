@@ -34,21 +34,25 @@ interface SummaryCardProps {
 }
 
 const UserSummary = () => {
-  // Local state for user data and loading status
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch data once on component mount
   useEffect(() => {
     const getData = async () => {
       try {
         setLoading(true);
         const data = await fetchUsers();
 
-        // Cast data to User[] (ideally type this properly in fetchUsers)
-        setUsers(data as User[]);
+        // ✅ Ensure data is an array before setting
+        if (Array.isArray(data)) {
+          setUsers(data);
+        } else {
+          console.error("User data is not an array:", data);
+          setUsers([]); // fallback to empty array
+        }
       } catch (error) {
         console.error("Error fetching user summary:", error);
+        setUsers([]); // fallback to empty array
       } finally {
         setLoading(false);
       }
@@ -57,13 +61,15 @@ const UserSummary = () => {
     getData();
   }, []);
 
-  // Count stats based on user data
-  const totalUsers = users.length;
-  const activeUsers = users.filter((u) => u.status === "Active").length;
-  const usersWithLoans = users.filter((u) => u.hasLoan).length;
-  const usersWithSavings = users.filter((u) => u.hasSavings).length;
+  // ✅ Safeguard against unexpected data types
+  const safeUsers = Array.isArray(users) ? users : [];
 
-  // Card data list
+  // Count stats based on safe user data
+  const totalUsers = safeUsers.length;
+  const activeUsers = safeUsers.filter((u) => u.status === "Active").length;
+  const usersWithLoans = safeUsers.filter((u) => u.hasLoan).length;
+  const usersWithSavings = safeUsers.filter((u) => u.hasSavings).length;
+
   const summaryData: SummaryCardProps[] = [
     {
       icon: <img src={userIcon} alt="" className={styles.icon} />,
@@ -87,7 +93,6 @@ const UserSummary = () => {
     },
   ];
 
-  // Show loader while fetching
   if (loading) {
     return (
       <div className={styles.loaderContainer}>
@@ -96,7 +101,6 @@ const UserSummary = () => {
     );
   }
 
-  // Render summary cards
   return (
     <section className={styles.container}>
       <h2 className={styles.sectionTitle}>Users</h2>
