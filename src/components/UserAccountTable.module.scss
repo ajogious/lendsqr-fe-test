@@ -1,17 +1,19 @@
+@import "../styles/variables";
+
 // ==============================
 // Base Container Styling
 // ==============================
 
 .container {
-  background: #ffffff;
-  border: 1px solid rgba(33, 63, 125, 0.06);
-  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
-  border-radius: 4px;
+  background: $white;
+  border: 1px solid $border-color;
+  box-shadow: 3px 5px 20px $shadow-color;
+  border-radius: $border-radius;
   margin-top: 1.5rem;
-  padding: 30px;
+  padding: $padding-desktop;
 
   @media (max-width: 768px) {
-    padding: 1rem;
+    padding: $padding-mobile;
   }
 }
 
@@ -20,14 +22,14 @@
 // ==============================
 
 .tableContainer {
-  overflow-x: auto; // Enables horizontal scroll on small screens
+  overflow-x: auto;
   width: 100%;
 }
 
 .table {
   width: 100%;
-  min-width: 800px;
-  border-collapse: collapse; // Remove spacing between table cells
+  min-width: $table-min-width;
+  border-collapse: collapse;
 }
 
 // ==============================
@@ -39,10 +41,10 @@
   padding: 0.55rem 2.5rem 0.55rem 0.5rem;
   font-size: 14px;
   font-weight: 600;
-  color: #545f7d;
+  color: $text-color;
   text-transform: uppercase;
-  background-color: #ffffff;
-  border-bottom: 1px solid rgba(33, 63, 125, 0.1);
+  background-color: $white;
+  border-bottom: 1px solid $header-border-color;
   white-space: nowrap;
 
   .headerContent {
@@ -51,9 +53,8 @@
     gap: 8px;
   }
 
-  // On hover, darken filter lines for better visibility
   &:hover .filterLine {
-    background-color: #213f7d;
+    background-color: $text-hover;
   }
 
   @media (max-width: 768px) {
@@ -67,7 +68,7 @@
 
 .row {
   &:hover {
-    background-color: rgba(57, 205, 204, 0.03); // Light teal hover effect
+    background-color: $hover-bg;
   }
 }
 
@@ -78,8 +79,8 @@
 .cell {
   padding: 5px 0.5rem;
   font-size: 13px;
-  color: #545f7d;
-  border-bottom: 1px solid rgba(33, 63, 125, 0.1);
+  color: $text-color;
+  border-bottom: 1px solid $header-border-color;
   vertical-align: middle;
 
   @media (max-width: 768px) {
@@ -102,7 +103,7 @@
 
 .filterLine {
   height: 2px;
-  background-color: #545f7d;
+  background-color: $text-color;
   transition: all 0.2s ease;
 
   &:nth-child(1) {
@@ -129,28 +130,27 @@
   font-weight: 500;
   text-align: center;
   text-transform: capitalize;
-  min-width: 80px; // Keeps badge width consistent
+  min-width: $badge-min-width;
   border-radius: 100px;
 
-  // Each status has its own color scheme
   &.active {
-    background-color: rgba(57, 205, 98, 0.06);
-    color: #39cd62;
+    background-color: $status-active-bg;
+    color: $status-active-text;
   }
 
   &.pending {
-    background-color: rgba(233, 178, 0, 0.06);
-    color: #e9b200;
+    background-color: $status-pending-bg;
+    color: $status-pending-text;
   }
 
   &.inactive {
-    background-color: rgba(84, 95, 125, 0.06);
-    color: #545f7d;
+    background-color: $status-inactive-bg;
+    color: $status-inactive-text;
   }
 
   &.blacklisted {
-    background-color: rgba(228, 3, 59, 0.06);
-    color: #e4033b;
+    background-color: $status-blacklisted-bg;
+    color: $status-blacklisted-text;
   }
 }
 
@@ -160,11 +160,11 @@
 
 .moreIcon {
   cursor: pointer;
-  color: #545f7d;
+  color: $text-color;
   transition: transform 0.2s ease;
 
   &:hover {
-    transform: scale(1.1); // Slight zoom on hover
+    transform: scale(1.1);
   }
 }
 
@@ -177,12 +177,12 @@
 .noResults {
   padding: 2rem;
   text-align: center;
-  color: #545f7d;
+  color: $text-color;
   font-size: 1rem;
 }
 
 .error {
-  color: #e4033b; // Alert red
+  color: $status-blacklisted-text;
 }
 
 // ==============================
@@ -197,9 +197,9 @@
 }
 
 .loader {
-  width: 40px;
-  height: 40px;
-  border: 4px solid #39cdcc;
+  width: $loader-size;
+  height: $loader-size;
+  border: $loader-border solid $loader-color;
   border-top-color: transparent;
   border-radius: 50%;
   animation: spin 0.7s linear infinite;

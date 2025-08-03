@@ -1,35 +1,32 @@
-// Container for the entire pagination section
+@import "../styles/variables";
+
 .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  font-family: "Work Sans", sans-serif;
-  font-size: 14px;
-  color: #545f7d;
+  font-family: $pagination-font;
+  font-size: $pagination-font-size;
+  color: $pagination-color;
   padding: 1rem 0;
 }
 
-// Text showing "Showing x out of y"
 .showingText {
   font-weight: 400;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: $pagination-gap-md;
 }
 
-// Dropdown for selecting items per page
 .itemsPerPageSelect {
-  background-color: rgba(33, 63, 125, 0.1);
-  border: 1px solid rgba(33, 63, 125, 0.1);
-  border-radius: 4px;
+  background-color: $pagination-hover-bg;
+  border: 1px solid $pagination-border;
+  border-radius: $pagination-radius;
   padding: 2px 8px;
-  color: #213f7d;
+  color: $pagination-accent;
   font-weight: 500;
   cursor: pointer;
   appearance: none;
-
-  // Custom arrow icon for dropdown
   background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: right 4px center;
@@ -38,106 +35,92 @@
 
   &:focus {
     outline: none;
-    border-color: #39cdcc;
+    border-color: $pagination-focus-border;
   }
 }
 
-// Styling for total items text
 .totalItems {
   font-weight: 500;
-  color: #213f7d;
+  color: $pagination-accent;
 }
 
-// Wrapper for page navigation buttons and numbers
 .paginationControls {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: $pagination-gap-md;
 }
 
-// Navigation arrows (left/right)
 .navButton {
-  background-color: rgba(33, 63, 125, 0.1);
-  border: 1px solid rgba(33, 63, 125, 0.1);
-  border-radius: 4px;
-  padding: 6px 8px;
+  background-color: $pagination-hover-bg;
+  border: 1px solid $pagination-border;
+  border-radius: $pagination-radius;
+  padding: $pagination-arrow-padding;
   cursor: pointer;
-  color: #213f7d;
+  color: $pagination-accent;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
 
-  // Hover effect for enabled buttons
   &:hover:not(:disabled) {
-    background-color: rgba(33, 63, 125, 0.2);
+    background-color: $pagination-hover-bg-strong;
   }
 
-  // Disabled state styling
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }
 }
 
-// Container for the list of page number buttons
 .pageNumbers {
   display: flex;
-  gap: 4px;
+  gap: $pagination-gap-sm;
 }
 
-// Individual page number button
 .pageButton {
-  min-width: 24px;
-  height: 24px;
+  min-width: $pagination-button-size;
+  height: $pagination-button-size;
   padding: 0 4px;
   background-color: transparent;
   border: none;
-  border-radius: 4px;
+  border-radius: $pagination-radius;
   cursor: pointer;
-  color: #545f7d;
-  font-size: 14px;
+  color: $pagination-color;
+  font-size: $pagination-font-size;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
 
-  // Hover style
   &:hover {
-    color: #213f7d;
+    color: $pagination-accent;
   }
 
-  // Active page style
   &.active {
-    background-color: rgba(33, 63, 125, 0.1);
-    color: #213f7d;
+    background-color: $pagination-hover-bg;
+    color: $pagination-accent;
     font-weight: 500;
   }
 }
 
-// Ellipsis between page numbers
 .ellipsis {
   display: flex;
   align-items: center;
   padding: 0 4px;
-  color: #545f7d;
+  color: $pagination-color;
 }
 
-/* Mobile responsiveness */
 @media (max-width: 768px) {
-  // Stack layout on small screens
   .container {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
   }
 
-  // Align pagination controls to the end
   .paginationControls {
     align-self: flex-end;
   }
 
-  // Hide page numbers on small screens
   .pageNumbers {
     display: none;
   }

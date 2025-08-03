@@ -1,58 +1,55 @@
-// Container for the entire user details page
+@import "../styles/variables";
+
+// === Styles ===
 .userDetailsContainer {
-  font-family: "Work Sans", sans-serif;
-  color: #213f7d;
-  padding: 20px;
+  font-family: $font-family;
+  color: $primary-color;
+  padding: $padding-md;
   max-width: 1200px;
   margin: 0 auto;
 
-  @media (max-width: 768px) {
-    padding: 15px;
+  @media (max-width: $break-md) {
+    padding: $padding-sm;
   }
 }
 
-// Header section containing title and description
 .headerSection {
   margin-bottom: 40px;
 
-  @media (max-width: 768px) {
+  @media (max-width: $break-md) {
     margin-bottom: 30px;
   }
 }
 
-// Main title and subtitle
 .searchHeader {
   h1 {
-    font-size: 24px;
+    font-size: $font-size-xl;
     margin: 0;
-    color: #213f7d;
+    color: $primary-color;
 
-    @media (max-width: 768px) {
+    @media (max-width: $break-md) {
       font-size: 20px;
     }
   }
   p {
-    font-size: 14px;
-    color: #545f7d;
+    font-size: $font-size-sm;
+    color: $secondary-color;
     margin: 5px 0 0;
   }
 }
 
-// Navigation section under user details
 .userNav {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
 }
 
-// "Switch Organization" text
 .switchOrg {
-  font-size: 14px;
-  color: #213f7d;
+  font-size: $font-size-sm;
+  color: $primary-color;
   margin-bottom: 20px;
 }
 
-// Navigation links and action buttons
 .navLinks {
   display: flex;
   justify-content: space-between;
@@ -60,33 +57,31 @@
   flex-wrap: wrap;
   gap: 20px;
 
-  @media (max-width: 768px) {
+  @media (max-width: $break-md) {
     flex-direction: column;
     align-items: flex-start;
     gap: 15px;
   }
 }
 
-// Link to go back
 .backLink {
-  color: #545f7d;
+  color: $secondary-color;
   text-decoration: none;
-  font-size: 16px;
+  font-size: $font-size-md;
   display: flex;
   align-items: center;
   gap: 5px;
 
-  @media (max-width: 768px) {
-    font-size: 14px;
+  @media (max-width: $break-md) {
+    font-size: $font-size-sm;
   }
 }
 
-// Blacklist/Activate buttons section
 .userActions {
   display: flex;
   gap: 15px;
 
-  @media (max-width: 768px) {
+  @media (max-width: $break-md) {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -97,65 +92,62 @@
     padding: 10px 15px;
     border-radius: 8px;
     font-weight: 600;
-    font-size: 12px;
+    font-size: $font-size-xs;
     cursor: pointer;
     text-transform: uppercase;
     border: 1px solid;
     background: transparent;
 
-    @media (max-width: 480px) {
+    @media (max-width: $break-sm) {
       padding: 8px 12px;
       font-size: 11px;
     }
 
     &.blacklistButton {
-      border-color: #e4033b;
-      color: #e4033b;
+      border-color: $error-color;
+      color: $error-color;
     }
 
     &.activateButton {
-      border-color: #39cdcc;
-      color: #39cdcc;
+      border-color: $highlight-color;
+      color: $highlight-color;
     }
   }
 }
 
-// Title for each section
 .sectionTitle {
-  font-size: 24px;
+  font-size: $font-size-xl;
   font-weight: 500;
   margin-bottom: 30px;
 
-  @media (max-width: 768px) {
+  @media (max-width: $break-md) {
     font-size: 20px;
     margin-bottom: 20px;
   }
 }
 
-// Summary card showing user info, tier, and account
 .userSummary {
-  background: #ffffff;
-  border: 1px solid rgba(33, 63, 125, 0.06);
-  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+  background: $bg-white;
+  border: 1px solid $border-light;
+  box-shadow: $shadow-light;
   border-radius: 4px;
-  padding: 30px;
+  padding: $padding-lg;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 30px;
-  margin-bottom: 30px;
+  gap: $padding-lg;
+  margin-bottom: $padding-lg;
 
-  @media (max-width: 992px) {
+  @media (max-width: $break-lg) {
     flex-direction: column;
     gap: 20px;
-    padding: 20px;
+    padding: $padding-md;
   }
 
-  @media (max-width: 480px) {
-    padding: 15px;
+  @media (max-width: $break-sm) {
+    padding: $padding-sm;
   }
 
-  // User profile section inside the summary
   .userProfile {
     display: flex;
     align-items: center;
@@ -163,125 +155,120 @@
     flex: 1;
     min-width: 250px;
 
-    @media (max-width: 480px) {
+    @media (max-width: $break-sm) {
       flex-direction: column;
       text-align: center;
       gap: 10px;
     }
 
-    // Avatar circle with initials
     .userAvatar {
       width: 80px;
       height: 80px;
       border-radius: 50%;
-      background: rgba(33, 63, 125, 0.1);
+      background: $avatar-bg;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: rgba(33, 63, 125, 0.4);
-      font-size: 24px;
+      color: $avatar-color;
+      font-size: $font-size-xl;
       font-weight: bold;
 
-      @media (max-width: 480px) {
+      @media (max-width: $break-sm) {
         width: 60px;
         height: 60px;
         font-size: 20px;
       }
     }
 
-    // User name and username
     .userName {
       h2 {
         margin: 0;
-        font-size: 22px;
-        color: #213f7d;
+        font-size: $font-size-lg;
+        color: $primary-color;
 
-        @media (max-width: 480px) {
+        @media (max-width: $break-sm) {
           font-size: 18px;
         }
       }
 
       p {
         margin: 5px 0 0;
-        color: #545f7d;
-        font-size: 14px;
+        color: $secondary-color;
+        font-size: $font-size-sm;
 
-        @media (max-width: 480px) {
-          font-size: 12px;
+        @media (max-width: $break-sm) {
+          font-size: $font-size-xs;
         }
       }
     }
   }
 
-  // User tier level with stars
   .userTier {
-    padding: 0 30px;
+    padding: 0 $padding-lg;
     border-left: 1px solid rgba(84, 95, 125, 0.2);
     border-right: 1px solid rgba(84, 95, 125, 0.2);
     min-width: 200px;
 
-    @media (max-width: 992px) {
+    @media (max-width: $break-lg) {
       border-left: none;
       border-right: none;
       border-top: 1px solid rgba(84, 95, 125, 0.2);
       border-bottom: 1px solid rgba(84, 95, 125, 0.2);
-      padding: 20px 0;
+      padding: $padding-md 0;
       min-width: 100%;
     }
 
     p {
       margin: 0 0 10px;
-      color: #545f7d;
-      font-size: 14px;
+      color: $secondary-color;
+      font-size: $font-size-sm;
     }
 
     .stars {
       display: flex;
       gap: 5px;
-      color: #e9b200;
+      color: $star-color;
 
       .star {
-        color: #e9b200;
-        font-size: 16px;
+        color: $star-color;
+        font-size: $font-size-md;
 
         &.active {
-          color: #e9b200;
+          color: $star-color;
         }
       }
     }
   }
 
-  // Bank/account number
   .userAccount {
     flex: 1;
     min-width: 200px;
 
     h2 {
       margin: 0;
-      font-size: 22px;
-      color: #213f7d;
+      font-size: $font-size-lg;
+      color: $primary-color;
 
-      @media (max-width: 480px) {
+      @media (max-width: $break-sm) {
         font-size: 18px;
       }
     }
 
     p {
       margin: 5px 0 0;
-      color: #213f7d;
-      font-size: 12px;
+      color: $primary-color;
+      font-size: $font-size-xs;
     }
   }
 }
 
-// Tab navigation under user profile
 .userTabs {
-  margin-bottom: 30px;
+  margin-bottom: $padding-lg;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 
-  @media (max-width: 768px) {
-    margin-bottom: 20px;
+  @media (max-width: $break-md) {
+    margin-bottom: $padding-md;
   }
 
   ul {
@@ -290,14 +277,14 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    border-bottom: 1px solid rgba(33, 63, 125, 0.1);
+    border-bottom: 1px solid $border-medium;
     min-width: max-content;
 
-    @media (max-width: 768px) {
+    @media (max-width: $break-md) {
       gap: 20px;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: $break-sm) {
       gap: 15px;
     }
 
@@ -305,17 +292,17 @@
       cursor: pointer;
       padding: 10px 0;
       color: rgba(0, 0, 0, 0.8);
-      font-size: 16px;
+      font-size: $font-size-md;
       position: relative;
       white-space: nowrap;
 
-      @media (max-width: 768px) {
-        font-size: 14px;
+      @media (max-width: $break-md) {
+        font-size: $font-size-sm;
         padding: 8px 0;
       }
 
       &.active {
-        color: #39cdcc;
+        color: $highlight-color;
         font-weight: 400;
 
         &::after {
@@ -325,35 +312,34 @@
           left: 0;
           right: 0;
           height: 2px;
-          background: #39cdcc;
+          background: $highlight-color;
         }
       }
     }
   }
 }
 
-// Sections like Personal Info, Education etc.
 .userDetailsSections {
-  background: #ffffff;
-  border: 1px solid rgba(33, 63, 125, 0.06);
-  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+  background: $bg-white;
+  border: 1px solid $border-light;
+  box-shadow: $shadow-light;
   border-radius: 4px;
-  padding: 30px;
+  padding: $padding-lg;
 
-  @media (max-width: 768px) {
-    padding: 20px;
+  @media (max-width: $break-md) {
+    padding: $padding-md;
   }
 
-  @media (max-width: 480px) {
-    padding: 15px;
+  @media (max-width: $break-sm) {
+    padding: $padding-sm;
   }
 
   section {
-    margin-bottom: 30px;
-    padding-bottom: 30px;
-    border-bottom: 1px solid rgba(33, 63, 125, 0.1);
+    margin-bottom: $padding-lg;
+    padding-bottom: $padding-lg;
+    border-bottom: 1px solid $border-medium;
 
-    @media (max-width: 768px) {
+    @media (max-width: $break-md) {
       margin-bottom: 25px;
       padding-bottom: 25px;
     }
@@ -365,12 +351,12 @@
     }
 
     h3 {
-      color: #213f7d;
-      font-size: 16px;
+      color: $primary-color;
+      font-size: $font-size-md;
       font-weight: 500;
-      margin: 0 0 30px;
+      margin: 0 0 $padding-lg;
 
-      @media (max-width: 768px) {
+      @media (max-width: $break-md) {
         margin-bottom: 20px;
         font-size: 15px;
       }
@@ -379,22 +365,22 @@
     .infoGrid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 30px;
-      row-gap: 30px;
+      gap: $padding-lg;
+      row-gap: $padding-lg;
 
-      @media (max-width: 992px) {
+      @media (max-width: $break-lg) {
         grid-template-columns: repeat(3, 1fr);
         gap: 25px;
         row-gap: 25px;
       }
 
-      @media (max-width: 768px) {
+      @media (max-width: $break-md) {
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
         row-gap: 20px;
       }
 
-      @media (max-width: 480px) {
+      @media (max-width: $break-sm) {
         grid-template-columns: 1fr;
         gap: 15px;
       }
@@ -402,21 +388,21 @@
       .infoItem {
         strong {
           display: block;
-          font-size: 12px;
-          color: #545f7d;
+          font-size: $font-size-xs;
+          color: $secondary-color;
           text-transform: uppercase;
           margin-bottom: 8px;
           font-weight: 400;
         }
 
         span {
-          font-size: 16px;
-          color: #545f7d;
+          font-size: $font-size-md;
+          color: $secondary-color;
           font-weight: 500;
           word-break: break-word;
 
-          @media (max-width: 768px) {
-            font-size: 14px;
+          @media (max-width: $break-md) {
+            font-size: $font-size-sm;
           }
         }
       }
@@ -424,35 +410,33 @@
   }
 }
 
-// Special grid override for Education & Employment section
 .educationEmployment {
   .infoGrid {
     grid-template-columns: repeat(4, 1fr) !important;
 
-    @media (max-width: 992px) {
+    @media (max-width: $break-lg) {
       grid-template-columns: repeat(3, 1fr) !important;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: $break-md) {
       grid-template-columns: repeat(2, 1fr) !important;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: $break-sm) {
       grid-template-columns: 1fr !important;
     }
   }
 }
 
-// Loading and error messages
 .loading,
 .error {
-  padding: 30px;
+  padding: $padding-lg;
   text-align: center;
-  font-size: 18px;
-  color: #545f7d;
+  font-size: $font-size-lg;
+  color: $secondary-color;
 
-  @media (max-width: 768px) {
-    padding: 20px;
-    font-size: 16px;
+  @media (max-width: $break-md) {
+    padding: $padding-md;
+    font-size: $font-size-md;
   }
 }

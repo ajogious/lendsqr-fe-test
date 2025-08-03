@@ -1,70 +1,63 @@
-// Main layout wrapper for the dashboard
+@import "../styles/variables";
+
 .dashboardLayout {
-  max-width: 1440px;
+  max-width: $max-container-width;
   margin: auto;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   position: relative;
-  background-color: #f9fafd; // light background
+  background-color: $color-bg-light;
 }
 
-// Container holding sidebar and main content
 .mainContent {
   display: flex;
-  min-height: calc(100vh - 60px); // adjust for header height if any
+  min-height: calc(100vh - #{$header-height});
   overflow-x: hidden;
 }
 
-// Sidebar styles
 .sidebar {
-  min-width: 283px;
-  width: 283px;
-  background-color: #fff;
-  border-right: 1px solid #eee;
-  transition: transform 0.3s ease; // smooth slide in/out
+  min-width: $sidebar-width;
+  width: $sidebar-width;
+  background-color: $color-white;
+  border-right: 1px solid $color-border-light;
+  transition: transform 0.3s ease;
   overflow-y: auto;
   text-align: left;
   min-height: 100vh;
-
   display: flex;
   flex-direction: column;
 
-  // Inner container to hold sidebar items
   .sidebarContent {
-    padding: 1.5rem 1rem;
+    padding: $spacing-md 1rem;
     flex: 1;
     overflow-y: auto;
   }
 }
 
-// Overlay behind the sidebar on mobile view
 .sidebarOverlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); // dark overlay
+  background-color: $color-overlay;
   z-index: 99;
 }
 
-// Wrapper for the main content section
 .contentWrapper {
   flex: 1;
-  padding: 2rem 3rem;
+  padding: $spacing-lg $spacing-xl;
   overflow-x: auto;
 }
 
-// Page title style
 .pageTitle {
-  color: #213f7d;
+  color: $color-primary;
   font-size: 24px;
   font-weight: 500;
-  margin-bottom: 1.5rem;
+  margin-bottom: $spacing-md;
 }
 
-// Pagination container for table/list pages
 .paginationContainer {
   display: flex;
   justify-content: space-between;
@@ -72,37 +65,31 @@
   margin-top: 1rem;
 }
 
-// Pagination info text
 .showingText {
-  color: #545f7d;
+  color: $color-secondary;
   font-size: 14px;
 }
 
-/* ========== Responsive styles ========== */
-
-// Tablet: reduce content padding
+// Responsive
 @media (max-width: 992px) {
   .contentWrapper {
-    padding: 1.5rem;
+    padding: $spacing-md;
   }
 }
 
-// Mobile sidebar behavior: off-canvas with slide animation
 @media (max-width: 768px) {
   .sidebar {
     position: fixed;
-    transform: translateX(-100%); // hidden by default
+    transform: translateX(-100%);
     height: 100vh;
     z-index: 100;
 
-    // When sidebar is open
     &.sidebarOpen {
-      transform: translateX(0); // slide in
+      transform: translateX(0);
     }
   }
 }
 
-// Small mobile: stack pagination and reduce content padding
 @media (max-width: 576px) {
   .paginationContainer {
     flex-direction: column;

@@ -1,52 +1,55 @@
+@import "../styles/variables";
+
+// ==============================
 // User filter form styles
+// ==============================
+
 .form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: $formGap;
   width: 100%;
-  max-width: 310px;
-  padding: 16px;
-  background: #ffffff;
+  max-width: $formMaxWidth;
+  padding: $formPadding;
+  background: $white;
   border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-  max-height: 95vh;
-  overflow-y: auto; // Allows vertical scroll if content exceeds height
+  box-shadow: 0 4px 20px $shadowColor;
+  max-height: $formMaxHeight;
+  overflow-y: auto;
 }
 
-// Each input group: label + input/select
 .formGroup {
   display: flex;
   flex-direction: column;
   gap: 4px;
 
   label {
-    font-size: 13px;
+    font-size: $labelFontSize;
     font-weight: 500;
-    color: #545f7d;
+    color: $darkText;
   }
 
   input,
   select {
-    height: 38px;
+    height: $inputHeight;
     padding: 0 12px;
-    border: 1px solid #dcdfe4;
-    border-radius: 6px;
-    background-color: #f9f9f9;
-    color: #545f7d;
-    font-size: 13px;
+    border: 1px solid $inputBorder;
+    border-radius: $borderRadius;
+    background-color: $lightGray;
+    color: $darkText;
+    font-size: $inputFontSize;
 
     &::placeholder {
-      color: #b0b0b0;
+      color: $placeholderText;
     }
 
     &:focus {
-      border-color: #39cdcc; // Highlight border on focus
-      background-color: #ffffff;
+      border-color: $focusBorder;
+      background-color: $white;
     }
   }
 }
 
-// Filter/Reset button group at the bottom
 .buttonGroup {
   display: flex;
   justify-content: space-between;
@@ -58,10 +61,10 @@
     justify-content: center;
     align-items: center;
     flex: 1;
-    height: 36px;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: 600;
+    height: $buttonHeight;
+    border-radius: $borderRadius;
+    font-size: $buttonFontSize;
+    font-weight: $buttonFontWeight;
     cursor: pointer;
     border: none;
     transition: 0.2s ease;
@@ -72,30 +75,28 @@
   }
 
   .reset {
-    background: #ffffff;
-    color: #545f7d;
-    border: 1px solid #dcdfe4;
+    background: $white;
+    color: $buttonResetText;
+    border: 1px solid $buttonResetBorder;
   }
 
   .submit {
-    background-color: #39cdcc;
-    color: #ffffff;
+    background-color: $buttonSubmitBg;
+    color: $buttonSubmitText;
   }
 }
 
-// Dimmed overlay background behind the form
 .overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: $overlayBg;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  z-index: 1000;
+  z-index: $zIndexOverlay;
   padding: 20px;
 }
 
-// Container that positions the form within the overlay
 .formContainer {
   margin-top: 0px;
   margin-left: 50px;

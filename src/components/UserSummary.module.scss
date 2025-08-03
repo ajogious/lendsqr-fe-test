@@ -1,3 +1,9 @@
+@import "../styles/variables";
+
+// =======================
+// 🧱 BASE STYLES
+// =======================
+
 // Container for the section
 .container {
   margin-bottom: 2rem;
@@ -5,11 +11,11 @@
 
 // Section heading
 .sectionTitle {
-  font-size: 24px;
+  font-size: $font-size-title;
   font-weight: 600;
-  color: #213f7d;
+  color: $color-primary;
   margin-bottom: 1.5rem;
-  font-family: "Work Sans", sans-serif;
+  font-family: $font-main;
 }
 
 // Responsive grid layout
@@ -21,17 +27,17 @@
 
 // Individual card styles
 .card {
-  background: #ffffff;
-  border: 1px solid rgba(33, 63, 125, 0.06);
-  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
-  border-radius: 4px;
+  background: $color-bg;
+  border: 1px solid $color-border;
+  box-shadow: $box-shadow;
+  border-radius: $radius;
   padding: 1.5rem;
   transition: all 0.3s ease;
   cursor: default;
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: $box-shadow-hover;
   }
 }
 
@@ -53,21 +59,21 @@
 
 // Card title text
 .cardTitle {
-  font-size: 14px;
+  font-size: $font-size-cardTitle;
   font-weight: 500;
   text-transform: uppercase;
-  color: #545f7d;
+  color: $color-secondary;
   margin-bottom: 0.75rem;
-  font-family: "Work Sans", sans-serif;
+  font-family: $font-main;
 }
 
 // Card value text
 .cardValue {
-  font-size: 24px;
+  font-size: $font-size-cardValue;
   font-weight: 600;
-  color: #213f7d;
+  color: $color-primary;
   margin: 0;
-  font-family: "Work Sans", sans-serif;
+  font-family: $font-main;
 }
 
 // Loader styles

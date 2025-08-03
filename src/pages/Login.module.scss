@@ -4,34 +4,34 @@
 .loginContainer {
   display: flex;
   height: 100vh;
-  font-family: "Avenir Next", "Avenir", "Segoe UI", "Helvetica Neue", sans-serif;
+  font-family: $font-family-base;
 
-  @media (max-width: 1024px) {
+  @media (max-width: $breakpoint-lg) {
     flex-direction: column;
     height: auto;
   }
 }
 
-/* ========== Left Pane (Logo + Illustration) ========== */
+/* ========== Left Pane ========== */
 .leftPane {
-  background-color: #fff;
+  background-color: $white;
   flex: 1;
-  padding: 3rem 5rem 5rem 5rem;
+  padding: $padding-lg $padding-xxl;
   display: flex;
   flex-direction: column;
-  gap: 5rem;
+  gap: $gap-xl;
   justify-content: center;
   align-items: center;
   text-align: center;
 
-  @media (max-width: 768px) {
-    padding: 2rem;
-    gap: 3rem;
+  @media (max-width: $breakpoint-md) {
+    padding: $padding-md;
+    gap: $gap-lg;
   }
 
-  @media (max-width: 480px) {
-    padding: 1.5rem;
-    gap: 2rem;
+  @media (max-width: $breakpoint-sm) {
+    padding: $padding-sm;
+    gap: $gap-md;
   }
 }
 
@@ -41,7 +41,7 @@
   height: auto;
   align-self: flex-start;
 
-  @media (max-width: 768px) {
+  @media (max-width: $breakpoint-md) {
     align-self: center;
   }
 }
@@ -52,59 +52,59 @@
   height: auto;
 }
 
-/* ========== Right Pane (Login Form) ========== */
+/* ========== Right Pane ========== */
 .rightPane {
   background-color: $white;
   flex: 1;
   max-width: 704px;
-  padding: 4rem;
+  padding: $padding-xl;
   display: flex;
   flex-direction: column;
   justify-content: center;
 
-  @media (max-width: 1024px) {
+  @media (max-width: $breakpoint-lg) {
     max-width: 100%;
-    padding: 3rem;
+    padding: $padding-lg;
   }
 
-  @media (max-width: 768px) {
-    padding: 2rem;
+  @media (max-width: $breakpoint-md) {
+    padding: $padding-md;
   }
 
-  @media (max-width: 480px) {
-    padding: 1.5rem;
+  @media (max-width: $breakpoint-sm) {
+    padding: $padding-sm;
   }
 
   h1 {
     margin-bottom: 10px;
-    font-size: 40px;
+    font-size: $font-size-xxl;
     color: $navy;
     font-weight: bold;
     letter-spacing: -4%;
 
-    @media (max-width: 768px) {
+    @media (max-width: $breakpoint-md) {
       text-align: center;
-      font-size: 32px;
+      font-size: $font-size-xl;
     }
 
-    @media (max-width: 480px) {
-      font-size: 24px;
+    @media (max-width: $breakpoint-sm) {
+      font-size: $font-size-lg;
     }
   }
 
   p {
-    font-size: 20px;
+    font-size: $font-size-md;
     color: $text-gray;
     margin-bottom: 60px;
 
-    @media (max-width: 768px) {
+    @media (max-width: $breakpoint-md) {
       text-align: center;
-      font-size: 16px;
+      font-size: $font-size-sm;
       margin-bottom: 40px;
     }
 
-    @media (max-width: 480px) {
-      font-size: 14px;
+    @media (max-width: $breakpoint-sm) {
+      font-size: $font-size-xs;
       margin-bottom: 30px;
     }
   }
@@ -121,27 +121,26 @@ form {
 .inputGroup {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: $gap-sm;
 }
 
 input {
   padding: 15px;
-  border: 2px solid #545f7d26;
-  border-radius: 5px;
-  font-size: 14px;
+  border: 2px solid $border-gray;
+  border-radius: $radius-sm;
+  font-size: $font-size-xs;
   width: 100%;
 
   &::placeholder {
-    color: #545f7d99;
+    color: $text-gray;
   }
 
   &.errorInput {
-    border-color: #ff0000;
+    border-color: $error-red;
     animation: shake 0.5s ease-in-out;
   }
 }
 
-/* ========== Animation for invalid input ========== */
 @keyframes shake {
   0%,
   100% {
@@ -156,8 +155,8 @@ input {
 }
 
 .errorText {
-  color: #ff0000;
-  font-size: 12px;
+  color: $error-red;
+  font-size: $font-size-xxs;
   margin-top: -5px;
   margin-left: 5px;
 }
@@ -172,8 +171,8 @@ input {
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
-    font-size: 12px;
-    color: #39cdcc;
+    font-size: $font-size-xxs;
+    color: $primary;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 10%;
@@ -183,8 +182,8 @@ input {
 
 /* ========== Forgot Password Link ========== */
 .forgotPassword {
-  color: #39cdcc;
-  font-size: 12px;
+  color: $primary;
+  font-size: $font-size-xxs;
   font-weight: 600;
   text-transform: uppercase;
   text-decoration: none;
@@ -195,14 +194,14 @@ input {
 /* ========== Submit Button ========== */
 button {
   padding: 15px;
-  background-color: #39cdcc;
+  background-color: $primary;
   border: none;
-  color: white;
-  border-radius: 8px;
+  color: $white;
+  border-radius: $radius-md;
   font-weight: 600;
   cursor: pointer;
   text-transform: uppercase;
-  font-size: 14px;
+  font-size: $font-size-xs;
 
   &:hover {
     opacity: 0.9;

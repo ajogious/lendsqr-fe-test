@@ -1,10 +1,270 @@
 // _variables.scss
-$font-family: "Poppins", "DM Sans", "Segoe UI", sans-serif;
 
+// Font Families
+$font-primary: "Poppins", "DM Sans", "Segoe UI", sans-serif;
+$font-sidebar: "Work Sans", sans-serif;
+
+// Colors
 $white: #ffffff;
 $teal: #39cdcc;
 $navy: #213f7d;
 $text-gray: #545f7d;
+$hover-bg: rgba(57, 205, 204, 0.06);
 
+// Sizes
 $login-width: 1440px;
 $login-height: 900px;
+
+// Font Sizes
+$font-xs: 0.75rem;
+$font-sm: 0.8rem;
+
+// Spacing
+$padding-side: 1.5rem;
+$icon-size-sm: 14px;
+$icon-size: 16px;
+
+// Border
+$active-border-width: 3px;
+$active-border-radius: 0 3px 3px 0;
+
+// Dropdown
+$dropdown-bg: $white;
+$dropdown-hover-bg: rgba(57, 205, 204, 0.1); // cyan-ish
+$dropdown-border: rgba(33, 63, 125, 0.1); // light navy border
+$dropdown-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+$dropdown-hover-text: $navy;
+$dropdown-item-text: $text-gray;
+
+// Border Radius
+$radius-sm: 4px;
+
+// Font Sizes
+$font-sm-plus: 0.875rem;
+
+// Pagination
+$pagination-font: "Work Sans", sans-serif;
+$pagination-font-size: 14px;
+$pagination-color: $text-gray;
+$pagination-accent: $navy;
+$pagination-hover-bg: rgba(33, 63, 125, 0.1);
+$pagination-hover-bg-strong: rgba(33, 63, 125, 0.2);
+$pagination-border: rgba(33, 63, 125, 0.1);
+$pagination-focus-border: $teal;
+
+$pagination-radius: 4px;
+$pagination-arrow-padding: 6px 8px;
+$pagination-button-size: 24px;
+$pagination-gap-sm: 4px;
+$pagination-gap-md: 8px;
+
+// Topnav
+$topnav-bg: $white;
+$topnav-padding-desktop: 1rem 2rem;
+$topnav-padding-tablet: 1rem;
+$topnav-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+
+$topnav-font: "Work Sans", sans-serif;
+$docs-font: "Roboto", sans-serif;
+
+$topnav-color: $navy;
+$topnav-subtext: $text-gray;
+
+$topnav-border-light: rgba(33, 63, 125, 0.1);
+$topnav-border-focus: $teal;
+
+$search-radius: 8px;
+$search-font-size: 0.9rem;
+$search-width-desktop: 400px;
+$search-width-tablet: 300px;
+$search-bg-hover: darken($teal, 5%);
+
+$mobile-input-radius: 6px;
+$mobile-input-border: #ccc;
+$mobile-input-width: 160px;
+$mobile-input-width-sm: 120px;
+
+$avatar-size: 40px;
+$chevron-size: 20px;
+$icon-size-sm: 14px;
+$icon-size-md: 20px;
+$icon-size-lg: 26px;
+
+// ==============================
+// Colors
+// ==============================
+
+$white: #ffffff;
+$primary-dark: #213f7d;
+$text-color: #545f7d;
+$text-hover: #213f7d;
+$border-color: rgba(33, 63, 125, 0.06);
+$header-border-color: rgba(33, 63, 125, 0.1);
+$shadow-color: rgba(0, 0, 0, 0.04);
+$hover-bg: rgba(57, 205, 204, 0.03);
+$loader-color: #39cdcc;
+
+// Status colors
+$status-active-bg: rgba(57, 205, 98, 0.06);
+$status-active-text: #39cd62;
+
+$status-pending-bg: rgba(233, 178, 0, 0.06);
+$status-pending-text: #e9b200;
+
+$status-inactive-bg: rgba(84, 95, 125, 0.06);
+$status-inactive-text: #545f7d;
+
+$status-blacklisted-bg: rgba(228, 3, 59, 0.06);
+$status-blacklisted-text: #e4033b;
+
+// ==============================
+// Layout & Sizing
+// ==============================
+
+$border-radius: 4px;
+$padding-desktop: 30px;
+$padding-mobile: 1rem;
+$table-min-width: 800px;
+$badge-min-width: 80px;
+$loader-size: 40px;
+$loader-border: 4px;
+
+// Form Filter
+$white: #ffffff;
+$lightGray: #f9f9f9;
+$darkText: #545f7d;
+$placeholderText: #b0b0b0;
+$inputBorder: #dcdfe4;
+$focusBorder: #39cdcc;
+$shadowColor: rgba(0, 0, 0, 0.06);
+$overlayBg: rgba(0, 0, 0, 0.2);
+$buttonResetBorder: #dcdfe4;
+$buttonResetText: #545f7d;
+$buttonSubmitBg: #39cdcc;
+$buttonSubmitText: #ffffff;
+
+$inputHeight: 38px;
+$buttonHeight: 36px;
+$borderRadius: 6px;
+$formMaxWidth: 310px;
+$formPadding: 16px;
+$formGap: 12px;
+$labelFontSize: 13px;
+$inputFontSize: 13px;
+$buttonFontSize: 13px;
+$buttonFontWeight: 600;
+$formMaxHeight: 95vh;
+$zIndexOverlay: 1000;
+
+// User Summary
+$color-primary: #213f7d;
+$color-secondary: #545f7d;
+$color-border: rgba(33, 63, 125, 0.06);
+$color-shadow: rgba(0, 0, 0, 0.04);
+$color-shadow-hover: rgba(0, 0, 0, 0.1);
+$color-bg: #ffffff;
+$font-main: "Work Sans", sans-serif;
+$font-size-title: 24px;
+$font-size-cardTitle: 14px;
+$font-size-cardValue: 24px;
+
+$radius: 4px;
+$box-shadow: 3px 5px 20px $color-shadow;
+$box-shadow-hover: 3px 5px 20px $color-shadow-hover;
+
+// Dashboard
+// Font families
+$font-primary: "Work Sans", sans-serif;
+
+// Colors
+$color-primary: #213f7d;
+$color-secondary: #545f7d;
+$color-white: #ffffff;
+$color-border: rgba(33, 63, 125, 0.06);
+$color-shadow-light: rgba(0, 0, 0, 0.04);
+$color-shadow-dark: rgba(0, 0, 0, 0.1);
+$color-loader: #39cdcc;
+$color-bg-light: #f9fafd;
+$color-overlay: rgba(0, 0, 0, 0.5);
+$color-border-light: #eee;
+
+// Sizing
+$sidebar-width: 283px;
+$max-container-width: 1440px;
+$header-height: 60px;
+
+// Spacing
+$spacing-md: 1.5rem;
+$spacing-lg: 2rem;
+$spacing-xl: 3rem;
+
+// login
+// Colors
+$white: #ffffff;
+$navy: #213f7d;
+$text-gray: #545f7d99;
+$border-gray: #545f7d26;
+$error-red: #ff0000;
+$primary: #39cdcc;
+
+// Typography
+$font-family-base: "Avenir Next", "Avenir", "Segoe UI", "Helvetica Neue",
+  sans-serif;
+
+// Font sizes
+$font-size-xxl: 40px;
+$font-size-xl: 32px;
+$font-size-lg: 24px;
+$font-size-md: 20px;
+$font-size-sm: 16px;
+$font-size-xs: 14px;
+$font-size-xxs: 12px;
+
+// Spacing
+$padding-xxl: 5rem;
+$padding-xl: 4rem;
+$padding-lg: 3rem;
+$padding-md: 2rem;
+$padding-sm: 1.5rem;
+
+$gap-xl: 5rem;
+$gap-lg: 3rem;
+$gap-md: 2rem;
+$gap-sm: 8px;
+
+// Border radius
+$radius-sm: 5px;
+$radius-md: 8px;
+
+// Breakpoints
+$breakpoint-lg: 1024px;
+$breakpoint-md: 768px;
+$breakpoint-sm: 480px;
+
+// User Details// === Variables ===
+$font-family: "Work Sans", sans-serif;
+$primary-color: #213f7d;
+$secondary-color: #545f7d;
+$highlight-color: #39cdcc;
+$error-color: #e4033b;
+$bg-white: #ffffff;
+$border-light: rgba(33, 63, 125, 0.06);
+$border-medium: rgba(33, 63, 125, 0.1);
+$shadow-light: 3px 5px 20px rgba(0, 0, 0, 0.04);
+$star-color: #e9b200;
+$avatar-bg: rgba(33, 63, 125, 0.1);
+$avatar-color: rgba(33, 63, 125, 0.4);
+
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-md: 16px;
+$font-size-lg: 22px;
+$font-size-xl: 24px;
+
+$padding-sm: 15px;
+$padding-md: 20px;
+$padding-lg: 30px;
+
+$break-sm: 480px;
+$break-md: 768px;
+$break-lg: 992px;

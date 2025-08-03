@@ -1,67 +1,62 @@
-// Container that wraps the dropdown trigger and menu
+// dropdown.scss
+@import "../styles/variables";
+
 .dropdownContainer {
-  position: relative; // Allows absolute positioning of the dropdown menu
-  display: inline-block; // Makes it inline but still block-level
+  position: relative;
+  display: inline-block;
 }
 
-// The trigger button that toggles the dropdown
 .trigger {
-  cursor: pointer; // Shows pointer on hover
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0.25rem;
-  border-radius: 4px;
+  border-radius: $radius-sm;
   transition: background-color 0.2s ease;
 
-  // Hover effect for the trigger
   &:hover {
-    background-color: rgba(33, 63, 125, 0.1);
+    background-color: $dropdown-border;
   }
 }
 
-// The dropdown menu itself
 .menu {
-  position: absolute; // Positions the menu relative to the container
-  right: 0; // Aligns menu to the right of trigger
-  top: 100%; // Positions menu below the trigger
-  background: #ffffff; // White background
-  border: 1px solid rgba(33, 63, 125, 0.1); // Light border
-  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04); // Soft shadow
-  border-radius: 4px; // Rounded corners
-  min-width: 180px; // Minimum width for the menu
-  z-index: 100; // Ensures it appears above other elements
-  margin-top: 0.5rem; // Spacing below trigger
-  overflow: hidden; // Hides overflowing items
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: $dropdown-bg;
+  border: 1px solid $dropdown-border;
+  box-shadow: $dropdown-shadow;
+  border-radius: $radius-sm;
+  min-width: 180px;
+  z-index: 100;
+  margin-top: 0.5rem;
+  overflow: hidden;
 }
 
-// Individual menu item styling
 .menuItem {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1rem;
-  font-size: 0.875rem;
-  color: #545f7d;
+  font-size: $font-sm-plus;
+  color: $dropdown-item-text;
   cursor: pointer;
   transition: background-color 0.2s ease;
 
-  // Hover effect for menu item
   &:hover {
-    background-color: rgba(57, 205, 204, 0.1); // Light cyan background
-    color: #213f7d; // Darker text on hover
+    background-color: $dropdown-hover-bg;
+    color: $dropdown-hover-text;
   }
 
-  // Adds a border between menu items, except the last
   &:not(:last-child) {
-    border-bottom: 1px solid rgba(33, 63, 125, 0.1);
+    border-bottom: 1px solid $dropdown-border;
   }
 
-  // Style for the icon inside the item
   .menuIcon {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #213f7d; // Icon color
+    color: $dropdown-hover-text;
   }
 }

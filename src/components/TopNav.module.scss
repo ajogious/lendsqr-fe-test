@@ -1,17 +1,18 @@
+@import "../styles/variables";
+
 .topnav {
   width: 100%;
-  background-color: #fff;
-  padding: 1rem 2rem;
+  background-color: $topnav-bg;
+  padding: $topnav-padding-desktop;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: $topnav-shadow;
   position: sticky;
   top: 0;
   z-index: 50;
-  font-family: "Work Sans", sans-serif;
+  font-family: $topnav-font;
 
-  /* ========== Left Section ========== */
   .leftSection {
     display: flex;
     align-items: center;
@@ -24,7 +25,7 @@
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
-    color: #213f7d;
+    color: $topnav-color;
     padding: 0.5rem;
   }
 
@@ -33,35 +34,34 @@
     width: 100%;
   }
 
-  /* Desktop Search */
   .searchContainer {
     position: relative;
-    width: 400px;
+    width: $search-width-desktop;
     display: flex;
   }
 
   .searchInput {
     width: 100%;
     padding: 0.5rem 1rem;
-    border: 1px solid #213f7d33;
-    border-radius: 8px 0 0 8px;
-    font-size: 0.9rem;
-    color: #545f7d;
+    border: 1px solid $topnav-border-light;
+    border-radius: $search-radius 0 0 $search-radius;
+    font-size: $search-font-size;
+    color: $topnav-subtext;
 
     &:focus {
       outline: none;
-      border-color: #39cdcc;
+      border-color: $topnav-border-focus;
     }
 
     &::placeholder {
-      color: rgba(84, 95, 125, 0.7);
+      color: rgba($topnav-subtext, 0.7);
     }
   }
 
   .searchButton {
-    background-color: #39cdcc;
+    background-color: $teal;
     border: none;
-    border-radius: 0 8px 8px 0;
+    border-radius: 0 $search-radius $search-radius 0;
     padding: 0 1.5rem;
     cursor: pointer;
     transition: background-color 0.2s ease;
@@ -71,18 +71,17 @@
     min-width: 56px;
 
     &:hover {
-      background-color: darken(#39cdcc, 5%);
+      background-color: $search-bg-hover;
     }
   }
 
   .searchIcon {
-    color: white;
-    width: 14px;
-    height: 14px;
+    color: $white;
+    width: $icon-size-sm;
+    height: $icon-size-sm;
     cursor: pointer;
   }
 
-  /* ========== Right Section ========== */
   .rightSection {
     display: flex;
     align-items: center;
@@ -90,11 +89,11 @@
   }
 
   .docsLink {
-    color: #213f7d;
+    color: $topnav-color;
     font-size: 16px;
     text-decoration: underline;
     text-transform: capitalize;
-    font-family: "Roboto", sans-serif;
+    font-family: $docs-font;
     transition: 0.3s ease;
 
     &:hover {
@@ -107,8 +106,8 @@
     cursor: pointer;
 
     &Icon {
-      color: #213f7d;
-      max-width: 26px;
+      color: $topnav-color;
+      max-width: $icon-size-lg;
     }
   }
 
@@ -119,27 +118,26 @@
     cursor: pointer;
 
     .avatar {
-      max-width: 40px;
+      max-width: $avatar-size;
       border-radius: 50%;
       object-fit: cover;
-      border: 1px solid rgba(33, 63, 125, 0.1);
+      border: 1px solid $topnav-border-light;
     }
 
     .username {
-      color: #213f7d;
+      color: $topnav-color;
       font-size: 16px;
       font-weight: 500;
       text-transform: capitalize;
     }
 
     .chevron {
-      color: #213f7d;
-      width: 20px;
-      height: 20px;
+      color: $topnav-color;
+      width: $chevron-size;
+      height: $chevron-size;
     }
   }
 
-  /* Mobile search toggle input or icon */
   .mobileSearchToggle {
     display: none;
     align-items: center;
@@ -147,17 +145,17 @@
 
     .mobileSearchInput {
       padding: 6px 10px;
-      font-size: 0.9rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
+      font-size: $search-font-size;
+      border: 1px solid $mobile-input-border;
+      border-radius: $mobile-input-radius;
       outline: none;
-      width: 160px;
+      width: $mobile-input-width;
     }
 
     .searchIcon {
-      color: #213f7d;
-      width: 20px;
-      height: 20px;
+      color: $topnav-color;
+      width: $icon-size-md;
+      height: $icon-size-md;
     }
   }
 
@@ -166,15 +164,12 @@
   }
 }
 
-/* ========== Responsive Design ========== */
-
-/* Medium Screens (Tablets) */
 @media (max-width: 1024px) {
   .topnav {
-    padding: 1rem;
+    padding: $topnav-padding-tablet;
 
     .searchContainer {
-      width: 300px;
+      width: $search-width-tablet;
     }
 
     .rightSection {
@@ -183,7 +178,6 @@
   }
 }
 
-/* Mobile Screens */
 @media (max-width: 768px) {
   .topnav {
     flex-direction: column;
@@ -227,7 +221,6 @@
   }
 }
 
-/* Extra Small Screens (Phones) */
 @media (max-width: 480px) {
   .profile {
     .username,
@@ -238,7 +231,7 @@
 
   .mobileSearchToggle {
     .mobileSearchInput {
-      width: 120px;
+      width: $mobile-input-width-sm;
     }
   }
 }

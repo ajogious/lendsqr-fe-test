@@ -1,9 +1,7 @@
 import axios from "axios";
 import generatedJSON from "../data/generated.json";
 
-const BASE_URL = "https://lendsqr-users.free.beeceptor.com/users";
-
-console.log(generatedJSON);
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export const fetchUsers = async () => {
   try {
@@ -11,6 +9,6 @@ export const fetchUsers = async () => {
     return response.data;
   } catch (error) {
     console.error("Failed to fetch users:", error);
-    return generatedJSON; // Back-up incase the end point couldn't be reach
+    return generatedJSON; // Fallback data
   }
 };

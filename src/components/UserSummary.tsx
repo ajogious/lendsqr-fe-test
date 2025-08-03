@@ -44,8 +44,6 @@ const UserSummary = () => {
       try {
         setLoading(true);
         const data = await fetchUsers();
-        console.log("Raw data:", data);
-        console.log("Is Array:", Array.isArray(data));
 
         // Cast data to User[] (ideally type this properly in fetchUsers)
         setUsers(data as User[]);

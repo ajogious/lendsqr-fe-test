@@ -160,7 +160,7 @@ const UserAccountTable = ({
   if (loading) {
     return (
       <div className={styles.loaderContainer}>
-        <div className={styles.loader}></div>
+        <div className={styles.loader} role="progressbar"></div>
       </div>
     );
   }
@@ -206,8 +206,7 @@ const UserAccountTable = ({
                     </div>
                   </th>
                 ))}
-                <th className={styles.headerCell}></th>{" "}
-                {/* For dropdown actions */}
+                <th className={styles.headerCell}></th>
               </tr>
             </thead>
             <tbody>
