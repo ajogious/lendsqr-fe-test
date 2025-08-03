@@ -35,6 +35,7 @@ All data is fetched from a mock API and handled gracefully on error.
 ├── .env                 # Environment variables
 ├── vite.config.ts       # Vite config
 └── README.md
+
 🛠️ Tech Stack
 Category	Tech
 Framework	React 18
@@ -56,54 +57,35 @@ Tooling	Vite
 
 To run tests:
 
-bash
-Copy
-Edit
 npm run test
 ⚙️ Setup Instructions
 1. Clone the Repo
-bash
-Copy
-Edit
-git clone https://github.com/your-username/lendsqr-fe-test.git
+git clone https://github.com/ajoious/lendsqr-fe-test.git
 cd lendsqr-fe-test
 2. Install Dependencies
-bash
-Copy
-Edit
 npm install
 3. Start the App
-bash
-Copy
-Edit
 npm run dev
 App runs on: http://localhost:5173/
 
 🎨 Design Notes
 🔄 Responsiveness
 The layout is fully responsive (mobile-first).
-
 Sidebar collapses appropriately on smaller screens.
 
 ⚡ Performance
 Lazy loading implemented where appropriate
-
 SCSS modularized for minimal re-renders
 
 🧠 Decisions
 State Handling: Kept minimal using useState/useEffect
-
 Routing: Used route guards via localStorage login check
-
 Mock Data: Integrated Beeceptor to simulate real API
 
 📦 Deployment
 Deployed to: https://lendsqr-fe-test.vercel.app
-
 Loom walkthrough: Watch Demo
 
 🙋 Author
 Abdulmumuni Ajoge
-GitHub
-LinkedIn
 ```
